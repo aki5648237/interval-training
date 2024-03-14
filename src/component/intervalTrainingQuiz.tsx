@@ -2,6 +2,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import React,{useState} from 'react';
 import { Answer } from './intervalTrainingAnswer'; 
+import s from '../sound/major3rd.mp3';
+
 
 
 
@@ -25,16 +27,16 @@ const IntervalTrainingQuiz = () => {
 	// 問題を定数soudNameにランダム格納
 	const getQuiz = (): string => {
 		const rand = Math.floor(Math.random() * questions.length)
-		soundName = questions[1].answerOptions[rand].answerText;
-		const my_audio = new Audio('/' + soundName + '.mp3');
+		soundName = questions[0].answerOptions[rand].answerText;
 
-		// クイズ表示時に一回流す
-		my_audio.play();
-		setListenCount(listenCount + 1);
+		// setListenCount(listenCount + 1);
+		
 	
-		return '';
-	
+		return soundName;
 	}
+
+	
+	
 
 	const questions: Question[] = [
 		{
@@ -61,6 +63,22 @@ const IntervalTrainingQuiz = () => {
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
 		}
+
+		soundName = getQuiz();
+
+		const my_audio = new Audio(s);
+
+		// クイズ表示時に一回流す
+		// my_audio.play();
+		
+
+		// ボタン押下時音を鳴らす
+		const jsplay = () => {
+			my_audio.currentTime = 0;
+			my_audio.play();
+			setListenCount(listenCount + 1);
+
+		}
 	
 	return (
 		<div>
@@ -68,7 +86,7 @@ const IntervalTrainingQuiz = () => {
 				インターバルクイズ
 			</Typography>
 
-			<Button variant='outlined'>はじめに聞く</Button>
+			<Button onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
 
 			<Typography>このインターバルは何かな？</Typography>
 
