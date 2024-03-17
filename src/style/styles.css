@@ -1,3 +1,11 @@
 .invisible {
 	display: none;
 }
+
+/* 正解時ボタンの色を変える */
+.correct {
+	background-color: greenyellow !important;
+}
+.inCorrect {
+	background-color: red !important;
+}

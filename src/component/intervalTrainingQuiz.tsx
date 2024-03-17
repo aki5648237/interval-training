@@ -37,6 +37,14 @@ const IntervalTrainingQuiz = () => {
 	const [openQuiz, setOpenQuiz] = useState<boolean>(false);
 	// 結果を非表示にするフラグ
 	const [openResult, setOpenResult] = useState<boolean>(true);
+	// 次のクイズボタンを表示するフラグ
+	const [nextQuiz, setNextQuiz] = useState<boolean>(true);
+	// 結果を見るボタンを表示するフラグ
+	const [resultQuiz, setResultQuiz] = useState<boolean>(false);
+	// 正解、不正解のフラグ
+	const [answer, setAnswer] = useState<string>('');
+	// 選択肢したボタンのvalue
+	const [selectValue, setSelectValue] = useState<number>(99);
 
 
 	// 問題を定数soudNameにランダム格納
@@ -73,33 +81,33 @@ const IntervalTrainingQuiz = () => {
 		},
 	];
 
-	
-
 	const handleAnswerButtonClick = (value: number): void=> {
 
+		setSelectValue(value);
+
+		console.log('クイズ結果を表示するフラグ' + resultQuiz);
 		console.log('選択した値' + value);
 		console.log('答えの値' + rand);
 
 		// 正解時、次の問題へ移る
 		if (value === rand) {
 
-			setCurrentQuestion((currentQuestion) => currentQuestion + 1);
+			// ボタンの色を緑にする
+      setAnswer('correct');
 
-			
 			console.log('現在の問題No' + currentQuestion);
 			if (currentQuestion > 9) {
-				// 10問回答後、結果を表示
-				setOpenQuiz(true);
-				setOpenResult(false);
+				// 10問回答後、結果見るボタン表示
+				setResultQuiz(true);
 			}
 		}
 		else {
+			// ボタンの色を赤くする
+			setAnswer('inCorrect');
 			setMissCount((missCount) => missCount + 1);
 		}
+	
 	}
-		// クイズ表示時に一回流す
-		// my_audio.play();
-		
 
 		// ボタン押下時音を鳴らす
 		const jsplay = () => {
@@ -109,9 +117,18 @@ const IntervalTrainingQuiz = () => {
 			console.log(listenCount);
 		}
 
-		// 問題名取得
-		// getQuiz();
-	
+	// 次の問題を表示
+	const nextDisplay = () => {
+		setCurrentQuestion((currentQuestion) => currentQuestion + 1);
+		// 選択肢のボタンのcssを破棄
+		setAnswer('');
+	}	
+
+	// 結果を表示
+	const resultDisplay = () => {
+		setOpenQuiz(true);
+		setOpenResult(false);
+	}
 	return (
 		<>
 			<div className={openQuiz ? "invisible" : ""}>
@@ -129,7 +146,16 @@ const IntervalTrainingQuiz = () => {
 					currentQuestion={currentQuestion}
 					questions={questions}
 					handleAnswerButtonClick={handleAnswerButtonClick}
+					answer={answer}
+					selectValue={selectValue}
 				/>
+				<div className={nextQuiz ? "" : "invisible"}>
+					<Button onClick={() => nextDisplay()}  variant='outlined'>次のクイズ</Button>
+				</div>
+				
+				<div className={resultQuiz ? "" : "invisible"}>
+					<Button onClick={() => resultDisplay()} variant='outlined'>結果を見る</Button>
+				</div>
 			</div>
 
 			<div className={openResult ? "invisible" : ""}>
@@ -144,12 +170,5 @@ const IntervalTrainingQuiz = () => {
 		</>
 	)
 }
-
-// 要素を見えなくする
-// const Invisible = css({
-// 	display:"none",
-// })
-
-
 
 export default IntervalTrainingQuiz;
