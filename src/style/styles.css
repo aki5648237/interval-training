@@ -9,3 +9,8 @@
 .inCorrect {
 	background-color: red !important;
 }
+/* 非活性時にボタンの色をそのままにする */
+Button {
+	border: 1px solid rgba(25, 118, 210, 0.5) !important;
+	color: #1976d2 !important;
+}

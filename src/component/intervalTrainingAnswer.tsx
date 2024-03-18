@@ -25,15 +25,14 @@ export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, ans
 					return <Button
 										className={`${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
 										onClick={() => handleAnswerButtonClick(item.value)}
+										disabled={answer === 'correct'}
 										variant='outlined'>{item.answerText}
 										{answer === 'correct' && item.value === selectValue ? <TripOriginIcon /> : ''}
 										{answer === 'inCorrect' && item.value === selectValue ? <CloseIcon /> : ''}	
 									</Button>
-										
 			})}
 		</div>
 	);
-	
 }
 
 export default Answer;

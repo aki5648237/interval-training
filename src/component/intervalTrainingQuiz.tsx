@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import React,{useState, useEffect} from 'react';
@@ -25,6 +26,10 @@ export type Question = {
 
 const IntervalTrainingQuiz = () => {
 
+	const [key, setKey] = useState<number>(Date.now());
+
+	const navigate = useNavigate();
+
 	// 問題名格納
 	let soundName: string = '';
 	// 問題No
@@ -46,7 +51,6 @@ const IntervalTrainingQuiz = () => {
 	// 選択肢したボタンのvalue
 	const [selectValue, setSelectValue] = useState<number>(99);
 
-
 	// 問題を定数soudNameにランダム格納
 	useEffect(() => {
 		rand = Math.floor(Math.random() * questions[0].answerOptions.length);
@@ -65,11 +69,6 @@ const IntervalTrainingQuiz = () => {
 				break;
 		}
 	},[currentQuestion]);
-
-
-	const getQuiz = () => {
-		
-	}
 
 	const questions: Question[] = [
 		{
@@ -99,6 +98,7 @@ const IntervalTrainingQuiz = () => {
 			if (currentQuestion > 9) {
 				// 10問回答後、結果見るボタン表示
 				setResultQuiz(true);
+				setNextQuiz(false);
 			}
 		}
 		else {
@@ -106,7 +106,6 @@ const IntervalTrainingQuiz = () => {
 			setAnswer('inCorrect');
 			setMissCount((missCount) => missCount + 1);
 		}
-	
 	}
 
 		// ボタン押下時音を鳴らす
@@ -128,6 +127,15 @@ const IntervalTrainingQuiz = () => {
 	const resultDisplay = () => {
 		setOpenQuiz(true);
 		setOpenResult(false);
+	}
+
+	// 結果の破棄
+	const resetResult = () => {
+		// setCurrentQuestion(1);
+		// setListenCount(0);
+		// setMissCount(0);
+		// setOpenQuiz(false);
+		// setOpenResult(true);
 	}
 	return (
 		<>
@@ -166,6 +174,9 @@ const IntervalTrainingQuiz = () => {
 					<li>間違えた回数:{missCount}</li>
 					<li>得点</li>
 				</ul>
+
+				<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+				<Button variant='outlined'>もう一度</Button>
 			</div>
 		</>
 	)
