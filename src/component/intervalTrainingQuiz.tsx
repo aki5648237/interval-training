@@ -1,15 +1,12 @@
 import { useNavigate } from "react-router-dom"
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Typography, Button} from '@mui/material/';
 import React,{useState, useEffect} from 'react';
 import { Answer } from './intervalTrainingAnswer'; 
 import major3rd from '../sound/major3rd.mp3';
 import perfect5th from '../sound/perfect5th.mp3';
 import octabe from '../sound/octave.mp3';
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import "../style/styles.css";
-
+import AppHeader from "./appHeader";
 
 let my_audio: HTMLAudioElement;
 // 際レンダリング防止のため、最初に定義
@@ -26,12 +23,8 @@ export type Question = {
 
 const IntervalTrainingQuiz = () => {
 
-	const [key, setKey] = useState<number>(Date.now());
-
 	const navigate = useNavigate();
 
-	// 問題名格納
-	let soundName: string = '';
 	// 問題No
 	const [currentQuestion, setCurrentQuestion] =useState<number>(1);
 	// 聞いた回数
@@ -130,17 +123,21 @@ const IntervalTrainingQuiz = () => {
 	}
 
 	// 結果の破棄
-	const resetResult = () => {
-		// setCurrentQuestion(1);
-		// setListenCount(0);
-		// setMissCount(0);
-		// setOpenQuiz(false);
-		// setOpenResult(true);
+	const ResetResult = () => {
+		setCurrentQuestion(1);
+		setListenCount(0);
+		setMissCount(0);
+		setOpenQuiz(false);
+		setOpenResult(true);
+		setNextQuiz(true);
+		setResultQuiz(false);
+		setAnswer('');
 	}
 	return (
 		<>
+		<AppHeader />
 			<div className={openQuiz ? "invisible" : ""}>
-				<Typography variant="h3">
+				<Typography variant="h2">
 					インターバルクイズ
 				</Typography>
 
@@ -164,6 +161,8 @@ const IntervalTrainingQuiz = () => {
 				<div className={resultQuiz ? "" : "invisible"}>
 					<Button onClick={() => resultDisplay()} variant='outlined'>結果を見る</Button>
 				</div>
+
+				<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
 			</div>
 
 			<div className={openResult ? "invisible" : ""}>
@@ -176,7 +175,7 @@ const IntervalTrainingQuiz = () => {
 				</ul>
 
 				<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
-				<Button variant='outlined'>もう一度</Button>
+				<Button onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
 			</div>
 		</>
 	)
