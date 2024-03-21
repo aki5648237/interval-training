@@ -7,8 +7,8 @@ export const IntervalTraining = () => {
   return (
     <Box>
      <AppHeader />
-      <Card sx={{margin: '50px 20px 50px 20px'}} variant="outlined">
-        <Typography sx={{ textAlign: 'center'}}>インターバルクイズ</Typography>
+      <Card sx={{margin: '50px 20px 50px 20px', height: '170px'}} variant="outlined">
+        <Typography variant="h2" sx={{ textAlign: 'center', marginTop: '10px', marginBottom: '15px'}}>インターバルクイズ</Typography>
         <Typography>このクイズは、二つの音を聞き、インターバルを当てるトレーニングです。</Typography>
         <Typography>問題数は10問です。</Typography>
       </Card>

@@ -1,5 +1,5 @@
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+
+import { Typography, Button, Card, Box} from '@mui/material/';
 import { Question } from './intervalTrainingQuiz';
 import "../style/styles.css";
 
@@ -19,17 +19,19 @@ export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, ans
 	console.log('押下したボタンの結果' + answer);
 	return (
 		<div>
-			<Typography>{currentQuestion}問</Typography>
 			{
 				questions[0].answerOptions.map((item) => {
-					return <Button
-										className={`${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
-										onClick={() => handleAnswerButtonClick(item.value)}
-										disabled={answer === 'correct'}
-										variant='outlined'>{item.answerText}
-										{answer === 'correct' && item.value === selectValue ? <TripOriginIcon /> : ''}
-										{answer === 'inCorrect' && item.value === selectValue ? <CloseIcon /> : ''}	
-									</Button>
+					return <Box sx={{ textAlign: 'center', marginTop: '10px'}}>
+										<Button
+											sx={{marginBottom: '15px', width: '200px', height: '50px'}}
+											className={`${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
+											onClick={() => handleAnswerButtonClick(item.value)}
+											disabled={answer === 'correct'}
+											variant='outlined'>{item.answerText}
+											{answer === 'correct' && item.value === selectValue ? <TripOriginIcon /> : ''}
+											{answer === 'inCorrect' && item.value === selectValue ? <CloseIcon /> : ''}	
+										</Button>
+									</Box>
 			})}
 		</div>
 	);

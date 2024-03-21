@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Typography, Button} from '@mui/material/';
+import { Typography, Button, Card, Box} from '@mui/material/';
 import React,{useState, useEffect} from 'react';
 import { Answer } from './intervalTrainingAnswer'; 
 import major3rd from '../sound/major3rd.mp3';
@@ -66,9 +66,9 @@ const IntervalTrainingQuiz = () => {
 	const questions: Question[] = [
 		{
 			answerOptions:[
-				{answerText: 'Major 3rd(長3度)', value: 0},
-				{answerText: 'Perfect 5th(完全5度)', value: 1},
-				{answerText: 'Octave(完全8度)', value: 2},
+				{answerText: 'Major 3rd', value: 0},
+				{answerText: 'Perfect 5th', value: 1},
+				{answerText: 'Octave', value: 2},
 			],
 		},
 	];
@@ -136,49 +136,60 @@ const IntervalTrainingQuiz = () => {
 	return (
 		<>
 		<AppHeader />
-			<div className={openQuiz ? "invisible" : ""}>
-				<Typography variant="h2">
-					インターバルクイズ
-				</Typography>
+			<Box className={openQuiz ? "invisible" : ""}>
+				<Card sx={{margin: '50px 20px 50px 20px', height: '170px'}} variant="outlined">
+					<Box sx={{ textAlign: 'center'}}>
+						<Typography sx={{marginTop: '10px', marginBottom: '15px'}} variant="h2">
+							インターバルクイズ
+						</Typography>
+						<Box>
+							<Typography component="span">{currentQuestion}問</Typography>
+							<Typography component="span">　このインターバルは何かな？</Typography>
+						</Box>
 
-				<Button onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
+						<Button sx={{marginTop: '20px', width: '200px', height: '50px'}} onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
+					</Box>
+					
+				</Card>
+				<Card sx={{margin: '50px 20px 50px 20px', height: '350px'}} variant="outlined">
+					<Typography sx={{marginTop: '10px', marginLeft: '45px'}}>選択肢</Typography>
 
-				<Typography>このインターバルは何かな？</Typography>
+					<Answer 
+						currentQuestion={currentQuestion}
+						questions={questions}
+						handleAnswerButtonClick={handleAnswerButtonClick}
+						answer={answer}
+						selectValue={selectValue}
+					/>
+					<Box sx={{textAlign: 'center', marginTop: '20px'}}>
+						<Box className={nextQuiz ? "" : "invisible"}>
+							<Button onClick={() => nextDisplay()}  variant='outlined'>次のクイズ</Button>
+						</Box>
+						
+						<Box className={resultQuiz ? "" : "invisible"}>
+							<Button onClick={() => resultDisplay()} variant='outlined'>結果を見る</Button>
+						</Box>
+					</Box>
+				</Card>
 
-				<Typography>選択肢</Typography>
-
-				<Answer 
-					currentQuestion={currentQuestion}
-					questions={questions}
-					handleAnswerButtonClick={handleAnswerButtonClick}
-					answer={answer}
-					selectValue={selectValue}
-				/>
-				<div className={nextQuiz ? "" : "invisible"}>
-					<Button onClick={() => nextDisplay()}  variant='outlined'>次のクイズ</Button>
-				</div>
+				<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
 				
-				<div className={resultQuiz ? "" : "invisible"}>
-					<Button onClick={() => resultDisplay()} variant='outlined'>結果を見る</Button>
-				</div>
-
-				<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
-			</div>
-
-			<div className={openResult ? "invisible" : ""}>
-				<Typography>結果</Typography>
-
-				<ul>
-					<li>聞いた回数:{listenCount}</li>
-					<li>間違えた回数:{missCount}</li>
-					<li>得点</li>
-				</ul>
-
-				<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
-				<Button onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
-			</div>
+			</Box>
+				<Box className={openResult ? "invisible" : ""}>
+					<Card sx={{margin: '50px 20px 50px 20px', height: '20 0px'}} variant="outlined">
+						<Typography>結果</Typography>
+						<ul>
+							<li>聞いた回数:{listenCount}</li>
+							<li>間違えた回数:{missCount}</li>
+							<li>得点</li>
+						</ul>
+					</Card>
+					<Box sx={{ textAlign: 'center', marginTop: '10px'}}>
+						<Button sx={{width: '130px', height: '50px', marginRight:'20px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+						<Button sx={{width: '130px', height: '50px', marginLeft: '20px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
+					</Box>
+				</Box>
 		</>
 	)
 }
-
 export default IntervalTrainingQuiz;
