@@ -1,8 +1,7 @@
-/* 全体のデザイン */
-/* .container {
-	font-size: 24px;
-} */
-
+/* 全体の背景色 */
+.container {
+	/* background-color: #F7EEDD; */
+}
 
 .invisible {
 	display: none;

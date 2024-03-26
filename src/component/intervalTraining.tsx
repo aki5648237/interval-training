@@ -14,7 +14,7 @@ export const IntervalTraining = () => {
       </Card>
 
       <Box sx={{ textAlign: 'center'}}>
-        <Button onClick={() => navigate('/IntervalTrainingQuiz')}>クイズスタート</Button>
+        <Button onClick={() => navigate('/IntervalTrainingQuiz')} sx={{width: '200px', height: '50px', fontSize: '18px'}}>クイズスタート</Button>
       </Box>
 
     </Box>
