@@ -9,13 +9,19 @@
 
 /* 正解時ボタンの色を変える */
 .correct {
-	background-color: greenyellow !important;
+	background-color:rgba(0, 255, 0, 0.3) !important;
 }
 .inCorrect {
-	background-color: red !important;
+	background-color: rgba(255, 0, 0, 0.3) !important;
 }
 /* 非活性時にボタンの色をそのままにする */
 Button {
-	border: 1px solid rgba(25, 118, 210, 0.5) !important;
+	border: 2px solid rgba(25, 118, 210, 0.5) !important;
 	color: #1976d2 !important;
+	border-radius: 8px !important;
+	
+}
+
+.button {
+	font-weight: bold !important;
 }

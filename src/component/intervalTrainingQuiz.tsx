@@ -137,21 +137,21 @@ const IntervalTrainingQuiz = () => {
 		<Box className="container">
 			<AppHeader />
 				<Box className={openQuiz ? "invisible" : ""}>
-					<Typography variant="h2" sx={{marginTop: '50px', marginLeft: '19px'}}>
+					<Typography variant="h2" sx={{marginTop: '50px', marginBottom: '10px', textAlign: 'center'}}>
 						インターバルクイズ
 					</Typography>
 					<Card sx={{margin: '0 20px 50px 20px', height: '170px'}} variant="outlined">
-						<Box sx={{marginTop: '10px'}}>
-							<Typography variant="h3" component="span" sx={{marginLeft: '18px'}}>{currentQuestion}問</Typography>
-							<Typography variant="h3" component="span">　このインターバルは何かな？</Typography>
+						<Box sx={{backgroundColor: '#008DDA'}}>
+							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>{currentQuestion}問 このインターバルは何かな？</Typography>
 						</Box>
-						<Box sx={{ textAlign: 'center'}}>
-							<Button sx={{marginTop: '20px', width: '200px', height: '50px', fontSize: '18px'}} onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
+						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
+							<Button className="button" sx={{ width: '200px', height: '50px', fontSize: '18px'}} onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
 						</Box>
-						
 					</Card>
 					<Card sx={{margin: '50px 20px 20px 20px', height: '350px'}} variant="outlined">
-						<Typography variant="h3" sx={{marginTop: '10px', marginLeft: '18px'}}>選択肢</Typography>
+						<Box sx={{backgroundColor: '#008DDA'}}>
+							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>選択肢</Typography>
+						</Box>
 
 						<Answer 
 							currentQuestion={currentQuestion}
@@ -162,7 +162,7 @@ const IntervalTrainingQuiz = () => {
 						/>
 						<Box sx={{textAlign: 'center', marginTop: '20px'}}>
 							<Box className={nextQuiz ? "" : "invisible"}>
-								<Button onClick={() => nextDisplay()}  variant='outlined' sx={{width: '130px', height: '50px', fontSize: '18px'}}>次のクイズ</Button>
+								<Button className="button" onClick={() => nextDisplay()}  variant='outlined' sx={{width: '130px', height: '50px', fontSize: '18px'}}>次のクイズ</Button>
 							</Box>
 							
 							<Box className={resultQuiz ? "" : "invisible"}>
@@ -184,8 +184,8 @@ const IntervalTrainingQuiz = () => {
 							</ul>
 						</Card>
 						<Box sx={{ textAlign: 'center', marginTop: '10px'}}>
-							<Button sx={{width: '130px', height: '50px', marginRight:'20px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
-							<Button sx={{width: '130px', height: '50px', marginLeft: '20px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
+							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+							<Button className="button" sx={{width: '130px', height: '50px', marginLeft: '20px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
 						</Box>
 					</Box>
 		</Box>
