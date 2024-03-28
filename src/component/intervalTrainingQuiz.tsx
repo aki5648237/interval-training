@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Typography, Button, Card, Box} from '@mui/material/';
+import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
 import React,{useState, useEffect} from 'react';
 import { Answer } from './intervalTrainingAnswer'; 
 import major3rd from '../sound/major3rd.mp3';
@@ -134,22 +134,23 @@ const IntervalTrainingQuiz = () => {
 		setAnswer('');
 	}
 	return (
-		<Box className="container">
+		<>
 			<AppHeader />
+			<Box className="container">
 				<Box className={openQuiz ? "invisible" : ""}>
-					<Typography variant="h2" sx={{marginTop: '50px', marginBottom: '10px', textAlign: 'center'}}>
+					<Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold', color: '#F4538A'}}>
 						インターバルクイズ
 					</Typography>
-					<Card sx={{margin: '0 20px 50px 20px', height: '170px'}} variant="outlined">
-						<Box sx={{backgroundColor: '#008DDA'}}>
+					<Card sx={{margin: '0 20px 0 20px', height: '170px'}} variant="outlined">
+						<Box sx={{backgroundColor: '#00bfff'}}>
 							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>{currentQuestion}問 このインターバルは何かな？</Typography>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
 							<Button className="button" sx={{ width: '200px', height: '50px', fontSize: '18px'}} onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
 						</Box>
 					</Card>
-					<Card sx={{margin: '50px 20px 20px 20px', height: '350px'}} variant="outlined">
-						<Box sx={{backgroundColor: '#008DDA'}}>
+					<Card sx={{margin: '30px 20px 20px 20px', height: '350px'}} variant="outlined">
+						<Box sx={{backgroundColor: '#00bfff'}}>
 							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>選択肢</Typography>
 						</Box>
 
@@ -175,20 +176,31 @@ const IntervalTrainingQuiz = () => {
 
 				</Box>
 					<Box className={openResult ? "invisible" : ""}>
-						<Card sx={{margin: '50px 20px 50px 20px', height: '20 0px'}} variant="outlined">
-							<Typography>結果</Typography>
-							<ul>
-								<li>聞いた回数:{listenCount}</li>
-								<li>間違えた回数:{missCount}</li>
-								<li>得点</li>
-							</ul>
+					<Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold', color: '#F4538A'}}>
+						結果
+					</Typography>
+						<Card sx={{margin: '0 20px 40px 20px', height: '20 0px'}} variant="outlined">
+							<Box sx={{marginLeft: '20px'}}>
+								<List>
+									<ListItem>
+										<ListItemText>聞いた回数{listenCount}</ListItemText>
+									</ListItem>
+									<ListItem>
+										<ListItemText>間違えた回数{missCount}</ListItemText>
+									</ListItem>
+									<ListItem>
+										<ListItemText>得点</ListItemText>
+									</ListItem>
+								</List>
+							</Box>
 						</Card>
 						<Box sx={{ textAlign: 'center', marginTop: '10px'}}>
 							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
 							<Button className="button" sx={{width: '130px', height: '50px', marginLeft: '20px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
 						</Box>
 					</Box>
-		</Box>
+			</Box>
+		</>
 	)
 }
 export default IntervalTrainingQuiz;

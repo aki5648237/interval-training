@@ -1,6 +1,7 @@
 /* 全体の背景色 */
 .container {
-	/* background-color: #F7EEDD; */
+	background-color: rgba(245,221,97,0.3) !important;
+	height: 100vh;
 }
 
 .invisible {
@@ -9,10 +10,10 @@
 
 /* 正解時ボタンの色を変える */
 .correct {
-	background-color:rgba(0, 255, 0, 0.3) !important;
+	background-color:rgba(0, 255, 0, 0.5) !important;
 }
 .inCorrect {
-	background-color: rgba(255, 0, 0, 0.3) !important;
+	background-color: rgba(255, 0, 0, 0.5) !important;
 }
 /* 非活性時にボタンの色をそのままにする */
 Button {
@@ -25,3 +26,13 @@ Button {
 .button {
 	font-weight: bold !important;
 }
+
+.title {
+	margin: auto;
+	display: inline-block;
+  font-family: "Rampart One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+	color: #000;
+}
+

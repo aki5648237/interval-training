@@ -7,11 +7,8 @@ export const theme = createTheme({
 
 		h1: { fontSize: 32},
 		h2: { fontSize: 24},
-		h3: { fontSize: 21}
+		h3: { fontSize: 20, fontWeight: 600}
 	},
-	// Button: {
-	// 	fontWeight: 'bold'
-	// }
-	
+
 });
 export default theme; 
