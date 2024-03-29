@@ -7,6 +7,7 @@ import perfect5th from '../sound/perfect5th.mp3';
 import octabe from '../sound/octave.mp3';
 /** @jsxImportSource @emotion/react */
 import AppHeader from "./appHeader";
+import MainText from "./mainText";
 
 let my_audio: HTMLAudioElement;
 // 際レンダリング防止のため、最初に定義
@@ -138,6 +139,7 @@ const IntervalTrainingQuiz = () => {
 			<AppHeader />
 			<Box className="container">
 				<Box className={openQuiz ? "invisible" : ""}>
+					{/* <MainText /> */}
 					<Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold', color: '#F4538A'}}>
 						インターバルクイズ
 					</Typography>

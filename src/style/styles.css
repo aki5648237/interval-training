@@ -20,7 +20,6 @@ Button {
 	border: 2px solid rgba(25, 118, 210, 0.5) !important;
 	color: #1976d2 !important;
 	border-radius: 8px !important;
-	
 }
 
 .button {
@@ -34,5 +33,9 @@ Button {
   font-weight: 400;
   font-style: normal;
 	color: #000;
+}
+
+.image {
+	width: 280px;
 }
 

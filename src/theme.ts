@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { relative } from "path";
 
 export const theme = createTheme({
 	typography: {
