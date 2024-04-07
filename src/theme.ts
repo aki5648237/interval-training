@@ -6,8 +6,8 @@ export const theme = createTheme({
 
 		h1: { fontSize: 32},
 		h2: { fontSize: 24},
-		h3: { fontSize: 20, fontWeight: 600}
+		h3: { fontSize: 20}
 	},
-
+	
 });
 export default theme; 

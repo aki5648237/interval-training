@@ -21,15 +21,15 @@ export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, ans
 		<div>
 			{
 				questions[0].answerOptions.map((item) => {
-					return <Box sx={{ textAlign: 'center', marginTop: '20px'}}>
+					return <Box sx={{ marginTop: '20px', display: 'inline'}}>
 										<Button
-											sx={{width: '200px', height: '50px', fontSize: '18px', justifyContent: 'flex-start', position: 'relative', textTransform: 'none'}}
+											sx={{width: '160px', height: '50px', marginTop: '20px', fontSize: '18px', textTransform: 'none'}}
 											className={`${"button"} ${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
 											onClick={() => handleAnswerButtonClick(item.value)}
 											disabled={answer === 'correct'}
 											variant='outlined'>{item.answerText}
-											{answer === 'correct' && item.value === selectValue ? <TripOriginIcon fontSize="large" sx={{color: 'lime', position: 'absolute', right: '10px'}}/> : ''}
-											{answer === 'inCorrect' && item.value === selectValue ? <CloseIcon fontSize="large" sx={{color: 'red', position: 'absolute', right: '10px'}}/> : ''}	
+											{answer === 'correct' && item.value === selectValue ? <TripOriginIcon fontSize="large" sx={{color: 'lime', position: 'absolute', right: '5px'}}/> : ''}
+											{answer === 'inCorrect' && item.value === selectValue ? <CloseIcon fontSize="large" sx={{color: 'red', position: 'absolute', right: '5px'}}/> : ''}	
 										</Button>
 									</Box>
 			})}

@@ -1,8 +1,8 @@
 /* 全体の背景色 */
-.container {
+/* .container {
 	background-color: rgba(245,221,97,0.3) !important;
 	height: 100vh;
-}
+} */
 
 .invisible {
 	display: none;
@@ -17,8 +17,8 @@
 }
 /* 非活性時にボタンの色をそのままにする */
 Button {
-	border: 2px solid rgba(25, 118, 210, 0.5) !important;
-	color: #1976d2 !important;
+	border: 1px solid rgba(0, 0, 0, 1) !important;
+	color: #000000 !important;
 	border-radius: 8px !important;
 }
 
@@ -26,16 +26,21 @@ Button {
 	font-weight: bold !important;
 }
 
+
 .title {
 	margin: auto;
 	display: inline-block;
-  font-family: "Rampart One", sans-serif;
-  font-weight: 400;
+  font-family: "MS ゴシック";
   font-style: normal;
-	color: #000;
+	color: #FFFF;
 }
 
 .image {
-	width: 280px;
+	width: 100%;
+}
+
+.cardStyle {
+	color: #000000;
+	border: 1px solid rgba(0, 0, 0, 0.5);
 }
 

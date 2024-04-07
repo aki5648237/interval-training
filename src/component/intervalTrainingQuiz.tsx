@@ -140,32 +140,33 @@ const IntervalTrainingQuiz = () => {
 			<Box className="container">
 				<Box className={openQuiz ? "invisible" : ""}>
 					{/* <MainText /> */}
-					<Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold', color: '#F4538A'}}>
+					{/* <Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold'}}>
 						インターバルクイズ
-					</Typography>
-					<Card sx={{margin: '0 20px 0 20px', height: '170px'}} variant="outlined">
-						<Box sx={{backgroundColor: '#00bfff'}}>
-							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>{currentQuestion}問 このインターバルは何かな？</Typography>
+					</Typography> */}
+					<Card className="cardStyle" sx={{margin: '60px 20px 0 20px', height: '170px'}} variant="outlined">
+						<Box sx={{backgroundColor: 'rgba(142, 59, 11, 0.8)', textAlign: 'center'}}>
+							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>{currentQuestion}問 このインターバルは？</Typography>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
-							<Button className="button" sx={{ width: '200px', height: '50px', fontSize: '18px'}} onClick={() => jsplay()} variant='outlined'>はじめに聞く</Button>
+							<Button className="button" sx={{ width: '200px', height: '50px', fontSize: '18px'}} onClick={() => jsplay()} variant='outlined'>再生</Button>
 						</Box>
 					</Card>
-					<Card sx={{margin: '30px 20px 20px 20px', height: '350px'}} variant="outlined">
-						<Box sx={{backgroundColor: '#00bfff'}}>
-							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>選択肢</Typography>
+					<Card className="cardStyle" sx={{margin: '30px 20px 20px 20px', height: '280px'}} variant="outlined">
+						<Box sx={{backgroundColor: 'rgba(142, 59, 11, 0.8)', textAlign: 'center'}}>
+							<Typography variant="h3" sx={{paddingTop: '10px', paddingBottom: '10px', color: 'white'}}>選択肢</Typography>
 						</Box>
-
-						<Answer 
-							currentQuestion={currentQuestion}
-							questions={questions}
-							handleAnswerButtonClick={handleAnswerButtonClick}
-							answer={answer}
-							selectValue={selectValue}
-						/>
+						<Box sx={{padding: '0 10px'}}>
+							<Answer 
+								currentQuestion={currentQuestion}
+								questions={questions}
+								handleAnswerButtonClick={handleAnswerButtonClick}
+								answer={answer}
+								selectValue={selectValue}
+							/>
+						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '20px'}}>
 							<Box className={nextQuiz ? "" : "invisible"}>
-								<Button className="button" onClick={() => nextDisplay()}  variant='outlined' sx={{width: '130px', height: '50px', fontSize: '18px'}}>次のクイズ</Button>
+								<Button className="button" onClick={() => nextDisplay()}  variant='outlined' sx={{width: '130px', height: '50px', fontSize: '18px'}}>スキップ</Button>
 							</Box>
 							
 							<Box className={resultQuiz ? "" : "invisible"}>
@@ -173,15 +174,16 @@ const IntervalTrainingQuiz = () => {
 							</Box>
 						</Box>
 					</Card>
-
-					<Button onClick={() => navigate('/')} variant='outlined' sx={{marginLeft: '20px'}}>Topに戻る</Button>
-
+					
+					<Box sx={{textAlign: 'center'}}>
+						<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+					</Box>
 				</Box>
 					<Box className={openResult ? "invisible" : ""}>
 					<Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold', color: '#F4538A'}}>
 						結果
 					</Typography>
-						<Card sx={{margin: '0 20px 40px 20px', height: '20 0px'}} variant="outlined">
+						<Card className="cardStyle" sx={{margin: '0 20px 40px 20px', height: '20 0px'}} variant="outlined">
 							<Box sx={{marginLeft: '20px'}}>
 								<List>
 									<ListItem>
