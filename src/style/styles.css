@@ -22,25 +22,59 @@ Button {
 	border-radius: 8px !important;
 }
 
-.button {
+.main-button {
+	width: 240px;
+	height: 70px;
+	font-size: 25px !important;
 	font-weight: bold !important;
+	color: #FFFF !important;
+	background-color: rgb(255, 132, 0, 0.9) !important;
 }
 
+.sub-button {
+	width: 110px;
+	height: 40px;
+	font-size: 18px !important;
+	text-transform: none !important;
+}
+
+.option-button {
+	width: 160px;
+	height: 50px;
+	margin-top: 20px !important;
+	font-size: 18px !important;
+	font-weight: bold !important;
+	text-transform: none !important;
+}
 
 .title {
-	margin: auto;
+	color: rgb(255, 255, 255);
+}
+
+.sub-title {
 	display: inline-block;
-  font-family: "MS ゴシック";
-  font-style: normal;
-	color: #FFFF;
+	padding: 0.8rem 0;
+	margin-bottom: 0.2rem;
+	background-image: linear-gradient(90deg, rgba(207, 112, 23, 0.794) 0 10%, #dedede 25%);
+	background-repeat: no-repeat;
+	background-size: 100% 10%;
+	background-position: bottom;
+	color: #323232;
+	font-size: 26px;
+}
+
+.text {
+	font-size: 18px !important;
+	font-weight: 520 !important;
 }
 
 .image {
 	width: 100%;
+	height: 70px;
 }
 
 .cardStyle {
 	color: #000000;
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(1, 0, 0, 0.4) !important;
 }
 

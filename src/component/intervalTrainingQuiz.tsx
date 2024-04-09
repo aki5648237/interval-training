@@ -143,17 +143,17 @@ const IntervalTrainingQuiz = () => {
 					{/* <Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold'}}>
 						インターバルクイズ
 					</Typography> */}
-					<Card className="cardStyle" sx={{margin: '60px 20px 0 20px', height: '170px'}} variant="outlined">
-						<Box sx={{backgroundColor: 'rgba(142, 59, 11, 0.8)', textAlign: 'center'}}>
-							<Typography variant="h3" sx={{paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px', color: 'white'}}>{currentQuestion}問 このインターバルは？</Typography>
+					<Box sx={{margin: '40px 20px 0 20px', height: '170px'}}>
+						<Box sx={{ textAlign: 'center'}}>
+							<Typography className="sub-title" variant="h2" sx={{ paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px'}}>{currentQuestion}問 このインターバルは？</Typography>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
-							<Button className="button" sx={{ width: '200px', height: '50px', fontSize: '18px'}} onClick={() => jsplay()} variant='outlined'>再生</Button>
+							<Button className="main-button" onClick={() => jsplay()} variant='outlined'>再生</Button>
 						</Box>
-					</Card>
+					</Box>
 					<Card className="cardStyle" sx={{margin: '30px 20px 20px 20px', height: '280px'}} variant="outlined">
-						<Box sx={{backgroundColor: 'rgba(142, 59, 11, 0.8)', textAlign: 'center'}}>
-							<Typography variant="h3" sx={{paddingTop: '10px', paddingBottom: '10px', color: 'white'}}>選択肢</Typography>
+						<Box sx={{backgroundColor: 'rgba(170, 95, 0, 0.6)', textAlign: 'center'}}>
+							<Typography variant="h2" sx={{padding : '6px', color: 'white'}}>選択肢</Typography>
 						</Box>
 						<Box sx={{padding: '0 10px'}}>
 							<Answer 
@@ -164,27 +164,29 @@ const IntervalTrainingQuiz = () => {
 								selectValue={selectValue}
 							/>
 						</Box>
-						<Box sx={{textAlign: 'center', marginTop: '20px'}}>
+						<Box sx={{textAlign: 'center', marginTop: '30px'}}>
 							<Box className={nextQuiz ? "" : "invisible"}>
-								<Button className="button" onClick={() => nextDisplay()}  variant='outlined' sx={{width: '130px', height: '50px', fontSize: '18px'}}>スキップ</Button>
+								<Button className="sub-button" onClick={() => nextDisplay()}  variant='outlined'>スキップ</Button>
 							</Box>
 							
 							<Box className={resultQuiz ? "" : "invisible"}>
-								<Button onClick={() => resultDisplay()} variant='outlined' sx={{width: '130px', height: '50px', fontSize: '18px'}}>結果を見る</Button>
+								<Button className="sub-button" onClick={() => resultDisplay()} variant='outlined'>結果</Button>
 							</Box>
 						</Box>
 					</Card>
 					
 					<Box sx={{textAlign: 'center'}}>
-						<Button onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+						<Button className="sub-button" onClick={() => navigate('/')} variant='outlined'>Top</Button>
 					</Box>
 				</Box>
-					<Box className={openResult ? "invisible" : ""}>
-					<Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold', color: '#F4538A'}}>
-						結果
-					</Typography>
-						<Card className="cardStyle" sx={{margin: '0 20px 40px 20px', height: '20 0px'}} variant="outlined">
-							<Box sx={{marginLeft: '20px'}}>
+					<Box className={openResult ? "invisible" : ""} sx={{marginTop: '40px'}}>
+						<Box sx={{textAlign: 'center'}}>
+							<Typography className="sub-title" variant="h2" sx={{paddingTop: '50px', marginBottom: '10px'}}>
+								クイズの結果
+							</Typography>
+						</Box>
+						<Box sx={{margin: '0 20px 40px 20px', textAlign: 'center'}}>
+							<Box>
 								<List>
 									<ListItem>
 										<ListItemText>聞いた回数{listenCount}</ListItemText>
@@ -197,10 +199,10 @@ const IntervalTrainingQuiz = () => {
 									</ListItem>
 								</List>
 							</Box>
-						</Card>
+						</Box>
 						<Box sx={{ textAlign: 'center', marginTop: '10px'}}>
-							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
-							<Button className="button" sx={{width: '130px', height: '50px', marginLeft: '20px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
+							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px', fontSize: '18px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+							<Button className="button" sx={{width: '130px', height: '50px', marginLeft: '20px', fontSize: '18px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
 						</Box>
 					</Box>
 			</Box>

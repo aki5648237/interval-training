@@ -7,14 +7,16 @@ export const IntervalTraining = () => {
   return (
     <Box className="container">
      <AppHeader />
-     <Typography variant="h2" sx={{ textAlign: 'center', marginTop: '50px', marginBottom: '10px', fontWeight: 'bold'}}>インターバルクイズ</Typography>
-      <Box sx={{margin: '0 20px 50px 20px', height: '130px'}}>  
-        <Typography>このクイズは、二つの音を聞き、インターバルを当てるトレーニングです。</Typography>
-        <Typography>問題数は10問です。</Typography>
+     <Box sx={{textAlign: 'center', marginTop: '40px', marginBottom: '20px', }}>
+      <Typography className="sub-title" variant="h2">インターバルクイズ</Typography>
+     </Box>
+      <Box sx={{margin: '0 20px 40px 20px'}}>  
+        <Typography className="text">このクイズは、二つの音を聞き、インターバルを当てるトレーニングです。</Typography>
+        <Typography className="text">問題数は10問です。</Typography>
       </Box>
 
       <Box sx={{ textAlign: 'center'}}>
-        <Button className="button" onClick={() => navigate('/IntervalTrainingQuiz')} sx={{width: '200px', height: '50px', fontSize: '18px'}}>クイズスタート</Button>
+        <Button className="main-button" onClick={() => navigate('/IntervalTrainingQuiz')}>クイズスタート</Button>
       </Box>
     </Box>
 )

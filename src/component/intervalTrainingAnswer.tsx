@@ -23,8 +23,7 @@ export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, ans
 				questions[0].answerOptions.map((item) => {
 					return <Box sx={{ marginTop: '20px', display: 'inline'}}>
 										<Button
-											sx={{width: '160px', height: '50px', marginTop: '20px', fontSize: '18px', textTransform: 'none'}}
-											className={`${"button"} ${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
+											className={`${"option-button"} ${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
 											onClick={() => handleAnswerButtonClick(item.value)}
 											disabled={answer === 'correct'}
 											variant='outlined'>{item.answerText}
