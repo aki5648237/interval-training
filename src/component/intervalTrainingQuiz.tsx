@@ -18,6 +18,12 @@ type AnswerOption ={
 	value: number;
 }
 
+export type QuestionResult = {
+	resultText: string;
+	result: string;
+	missCount: number;
+}
+
 export type Question = {
   answerOptions: AnswerOption[];
 }
@@ -31,7 +37,7 @@ const IntervalTrainingQuiz = () => {
 	// 聞いた回数
 	const [listenCount, setListenCount] = useState<number>(0);
 	// 間違えた回数
-	const [missCount, setMissCount] = useState<number>(0);
+	// const [missCount, setMissCount] = useState<number>(0);
 	// 問題を非表示にするフラグ
 	const [openQuiz, setOpenQuiz] = useState<boolean>(false);
 	// 結果を非表示にするフラグ
@@ -44,11 +50,15 @@ const IntervalTrainingQuiz = () => {
 	const [answer, setAnswer] = useState<string>('');
 	// 選択肢したボタンのvalue
 	const [selectValue, setSelectValue] = useState<number>(99);
+	// 選択肢の正解/不正解情報
+	// const [optionResult, setOptionResult] = useState<string>('');
+
+	// スキップ/次へ文言
+	const [nextText, setNextText] = useState<string>("スキップ")
 
 	// 問題を定数soudNameにランダム格納
 	useEffect(() => {
 		rand = Math.floor(Math.random() * questions[0].answerOptions.length);
-		console.log('ランダム関数の値' + rand);
 		// soundName = questions[0].answerOptions[rand].answerText;
 
 		switch (rand) {
@@ -62,6 +72,12 @@ const IntervalTrainingQuiz = () => {
 				my_audio = new Audio(octabe);
 				break;
 		}
+
+		// クイズ結果リストの結果を破棄
+		const nextList = resultList.map((list) => {
+			return {...list, result:''};
+		})
+		setResultList(nextList);
 	},[currentQuestion]);
 
 	const questions: Question[] = [
@@ -74,32 +90,37 @@ const IntervalTrainingQuiz = () => {
 		},
 	];
 
-	const handleAnswerButtonClick = (value: number): void=> {
+	// クイズの結果
+	const questionResults: QuestionResult[] = [
+		{resultText: 'Major 3rd', result: '', missCount: 0},
+		{resultText: 'Perfect 5th', result: '', missCount: 0},
+		{resultText: 'Octave', result: '', missCount: 0}
+	]
+	const [resultList, setResultList] = useState<QuestionResult[]>(questionResults);
+		
+	const handleAnswerButtonClick = (answerText: string, value: number): void=> {
 
-		setSelectValue(value);
-
-		console.log('クイズ結果を表示するフラグ' + resultQuiz);
-		console.log('選択した値' + value);
-		console.log('答えの値' + rand);
-
-		// 正解時、次の問題へ移る
-		if (value === rand) {
-
-			// ボタンの色を緑にする
-      setAnswer('correct');
-
-			console.log('現在の問題No' + currentQuestion);
-			if (currentQuestion > 9) {
-				// 10問回答後、結果見るボタン表示
-				setResultQuiz(true);
-				setNextQuiz(false);
+		const nextList = resultList.map((list) => {
+			if (list.resultText === answerText) {
+				if (rand === value) {
+					setAnswer('correct');
+					setNextText('次へ');
+					return {...list, result:'correct'}
+				}
+				else {
+					return {...list, result:'inCorrect', missCount: list.missCount + 1}
+				}
 			}
-		}
-		else {
-			// ボタンの色を赤くする
-			setAnswer('inCorrect');
-			setMissCount((missCount) => missCount + 1);
-		}
+
+			if (currentQuestion > 9) {
+						// 10問回答後、結果見るボタン表示
+						setResultQuiz(true);
+						setNextQuiz(false);
+			}
+
+			return list;
+		})
+		setResultList(nextList);
 	}
 
 		// ボタン押下時音を鳴らす
@@ -107,7 +128,6 @@ const IntervalTrainingQuiz = () => {
 			my_audio.currentTime = 0;
 			my_audio.play();
 			setListenCount((listenCount) => listenCount + 1);
-			console.log(listenCount);
 		}
 
 	// 次の問題を表示
@@ -115,6 +135,7 @@ const IntervalTrainingQuiz = () => {
 		setCurrentQuestion((currentQuestion) => currentQuestion + 1);
 		// 選択肢のボタンのcssを破棄
 		setAnswer('');
+		setNextText('スキップ');
 	}	
 
 	// 結果を表示
@@ -127,7 +148,7 @@ const IntervalTrainingQuiz = () => {
 	const ResetResult = () => {
 		setCurrentQuestion(1);
 		setListenCount(0);
-		setMissCount(0);
+		// setMissCount(0);
 		setOpenQuiz(false);
 		setOpenResult(true);
 		setNextQuiz(true);
@@ -139,19 +160,15 @@ const IntervalTrainingQuiz = () => {
 			<AppHeader />
 			<Box className="container">
 				<Box className={openQuiz ? "invisible" : ""}>
-					{/* <MainText /> */}
-					{/* <Typography variant="h2" sx={{paddingTop: '50px', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold'}}>
-						インターバルクイズ
-					</Typography> */}
-					<Box sx={{margin: '40px 20px 0 20px', height: '170px'}}>
+					<Box sx={{margin: '40px 20px 0 20px'}}>
 						<Box sx={{ textAlign: 'center'}}>
-							<Typography className="sub-title" variant="h2" sx={{ paddingTop: '10px', paddingLeft: '18px', paddingBottom: '10px'}}>{currentQuestion}問 このインターバルは？</Typography>
+							<Typography className="sub-title" variant="h2">{currentQuestion}問 このインターバルは？</Typography>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
 							<Button className="main-button" onClick={() => jsplay()} variant='outlined'>再生</Button>
 						</Box>
 					</Box>
-					<Card className="cardStyle" sx={{margin: '30px 20px 20px 20px', height: '280px'}} variant="outlined">
+					<Card className="cardStyle" sx={{margin: '35px 20px 35px 20px', height: '280px'}} variant="outlined">
 						<Box sx={{backgroundColor: 'rgba(170, 95, 0, 0.6)', textAlign: 'center'}}>
 							<Typography variant="h2" sx={{padding : '6px', color: 'white'}}>選択肢</Typography>
 						</Box>
@@ -162,15 +179,16 @@ const IntervalTrainingQuiz = () => {
 								handleAnswerButtonClick={handleAnswerButtonClick}
 								answer={answer}
 								selectValue={selectValue}
+								resultList={resultList}
 							/>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '30px'}}>
 							<Box className={nextQuiz ? "" : "invisible"}>
-								<Button className="sub-button" onClick={() => nextDisplay()}  variant='outlined'>スキップ</Button>
+								<Button className={`${"sub-button"} ${nextText === 'スキップ' ? "skip-button": ""}`} onClick={() => nextDisplay()}  variant='outlined'>{nextText}</Button>
 							</Box>
 							
 							<Box className={resultQuiz ? "" : "invisible"}>
-								<Button className="sub-button" onClick={() => resultDisplay()} variant='outlined'>結果</Button>
+								<Button className="result-button" onClick={() => resultDisplay()} variant='outlined'>結果</Button>
 							</Box>
 						</Box>
 					</Card>
@@ -192,7 +210,7 @@ const IntervalTrainingQuiz = () => {
 										<ListItemText>聞いた回数{listenCount}</ListItemText>
 									</ListItem>
 									<ListItem>
-										<ListItemText>間違えた回数{missCount}</ListItemText>
+										{/* <ListItemText>間違えた回数{missCount}</ListItemText> */}
 									</ListItem>
 									<ListItem>
 										<ListItemText>得点</ListItemText>
@@ -201,7 +219,7 @@ const IntervalTrainingQuiz = () => {
 							</Box>
 						</Box>
 						<Box sx={{ textAlign: 'center', marginTop: '10px'}}>
-							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px', fontSize: '18px'}} onClick={() => navigate('/')} variant='outlined'>Topに戻る</Button>
+							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px', fontSize: '18px'}} onClick={() => navigate('/')} variant='outlined'>Top</Button>
 							<Button className="button" sx={{width: '130px', height: '50px', marginLeft: '20px', fontSize: '18px'}} onClick={() => ResetResult()} variant='outlined'>もう一度</Button>
 						</Box>
 					</Box>

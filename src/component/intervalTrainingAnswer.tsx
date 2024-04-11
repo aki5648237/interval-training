@@ -1,6 +1,7 @@
 
 import { Typography, Button, Card, Box} from '@mui/material/';
 import { Question } from './intervalTrainingQuiz';
+import { QuestionResult } from './intervalTrainingQuiz';
 import "../style/styles.css";
 
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
@@ -9,26 +10,29 @@ import CloseIcon from '@mui/icons-material/Close';
 type Props = {
 	currentQuestion: number
 	questions: Question[]
-	handleAnswerButtonClick: (value: number) => void
+	handleAnswerButtonClick: (answerText: string, value: number) => void
 	answer: string
 	selectValue: number
+	resultList: QuestionResult[]
 }
 
-export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, answer, selectValue}: Props) => {
+export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, answer, selectValue, resultList}: Props) => {
 	
-	console.log('押下したボタンの結果' + answer);
+	resultList.map((item)=> {
+		console.log('ボタンの色情報' + item.resultText + item.result)
+	})
 	return (
 		<div>
 			{
-				questions[0].answerOptions.map((item) => {
-					return <Box sx={{ marginTop: '20px', display: 'inline'}}>
+				questions[0].answerOptions.map((item, index) => {
+					return <Box sx={{ width: '50%', textAlign: 'center', display: 'inline-block'}}>
 										<Button
-											className={`${"option-button"} ${answer === 'correct' && item.value === selectValue ? "correct" : ""} ${answer === 'inCorrect' && item.value === selectValue ? "inCorrect" : ""}`}
-											onClick={() => handleAnswerButtonClick(item.value)}
+											className={`${"option-button"} ${resultList[index].result === 'correct' ? "correct" : ""} ${resultList[index].result === 'inCorrect' ? "inCorrect" : ""} ${answer === 'correct' && resultList[index].result === '' ? "unSelected": ""}`}
+											onClick={() => handleAnswerButtonClick(item.answerText, item.value)}
 											disabled={answer === 'correct'}
 											variant='outlined'>{item.answerText}
-											{answer === 'correct' && item.value === selectValue ? <TripOriginIcon fontSize="large" sx={{color: 'lime', position: 'absolute', right: '5px'}}/> : ''}
-											{answer === 'inCorrect' && item.value === selectValue ? <CloseIcon fontSize="large" sx={{color: 'red', position: 'absolute', right: '5px'}}/> : ''}	
+											{resultList[index].result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
+											{resultList[index].result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
 										</Button>
 									</Box>
 			})}

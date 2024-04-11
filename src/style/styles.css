@@ -1,8 +1,3 @@
-/* 全体の背景色 */
-/* .container {
-	background-color: rgba(245,221,97,0.3) !important;
-	height: 100vh;
-} */
 
 .invisible {
 	display: none;
@@ -15,6 +10,11 @@
 .inCorrect {
 	background-color: rgba(255, 0, 0, 0.5) !important;
 }
+/* 正解押下時未選択のボタンをグレーにする */
+.unSelected {
+	background-color: rgba(169, 169, 169, 0.5) !important;
+}
+
 /* 非活性時にボタンの色をそのままにする */
 Button {
 	border: 1px solid rgba(0, 0, 0, 1) !important;
@@ -37,7 +37,7 @@ Button {
 	font-size: 18px !important;
 	text-transform: none !important;
 }
-
+/* 選択肢のボタン */
 .option-button {
 	width: 160px;
 	height: 50px;
@@ -45,6 +45,20 @@ Button {
 	font-size: 18px !important;
 	font-weight: bold !important;
 	text-transform: none !important;
+}
+
+.result-button {
+	width: 110px;
+	height: 40px;
+	font-size: 18px !important;
+	text-transform: none !important;
+	font-weight: bold !important;
+	color: #000000 !important;
+	background-color: rgba(255, 227, 0, 0.9) !important;
+}
+
+.skip-button {
+	background-color: rgba(169, 169, 169, 0.5) !important;
 }
 
 .title {
@@ -61,6 +75,20 @@ Button {
 	background-position: bottom;
 	color: #323232;
 	font-size: 26px;
+}
+
+.circle-icon {
+	position: absolute;
+	color: rgb(21, 131, 21);
+	left: 130px;
+	bottom: 20px;
+}
+
+.cross-icon {
+	position: absolute;
+	color: red;
+	left: 130px;
+	bottom: 21px;
 }
 
 .text {
