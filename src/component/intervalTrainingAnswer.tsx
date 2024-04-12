@@ -8,19 +8,14 @@ import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
-	currentQuestion: number
 	questions: Question[]
 	handleAnswerButtonClick: (answerText: string, value: number) => void
 	answer: string
-	selectValue: number
 	resultList: QuestionResult[]
 }
 
-export const Answer = ({currentQuestion, questions, handleAnswerButtonClick, answer, selectValue, resultList}: Props) => {
+export const Answer = ({questions, handleAnswerButtonClick, answer, resultList}: Props) => {
 	
-	resultList.map((item)=> {
-		console.log('ボタンの色情報' + item.resultText + item.result)
-	})
 	return (
 		<div>
 			{

@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom"
 import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
-import React,{useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { Answer } from './intervalTrainingAnswer'; 
 import major3rd from '../sound/major3rd.mp3';
 import perfect5th from '../sound/perfect5th.mp3';
 import octabe from '../sound/octave.mp3';
 /** @jsxImportSource @emotion/react */
 import AppHeader from "./appHeader";
-import MainText from "./mainText";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 let my_audio: HTMLAudioElement;
 // 際レンダリング防止のため、最初に定義
@@ -50,9 +51,8 @@ const IntervalTrainingQuiz = () => {
 	const [answer, setAnswer] = useState<string>('');
 	// 選択肢したボタンのvalue
 	const [selectValue, setSelectValue] = useState<number>(99);
-	// 選択肢の正解/不正解情報
-	// const [optionResult, setOptionResult] = useState<string>('');
-
+	// 再生押下時のフラグ
+	const [playSound, setPlaySound] = useState<boolean>(false)
 	// スキップ/次へ文言
 	const [nextText, setNextText] = useState<string>("スキップ")
 
@@ -78,15 +78,22 @@ const IntervalTrainingQuiz = () => {
 			return {...list, result:''};
 		})
 		setResultList(nextList);
+
+		if (currentQuestion > 9) {
+			// 10問回答後、結果見るボタン表示
+			setResultQuiz(true);
+			setNextQuiz(false);
+}
 	},[currentQuestion]);
 
+	// クイズ内容
 	const questions: Question[] = [
 		{
 			answerOptions:[
 				{answerText: 'Major 3rd', value: 0},
 				{answerText: 'Perfect 5th', value: 1},
 				{answerText: 'Octave', value: 2},
-			],
+			]
 		},
 	];
 
@@ -94,10 +101,11 @@ const IntervalTrainingQuiz = () => {
 	const questionResults: QuestionResult[] = [
 		{resultText: 'Major 3rd', result: '', missCount: 0},
 		{resultText: 'Perfect 5th', result: '', missCount: 0},
-		{resultText: 'Octave', result: '', missCount: 0}
+		{resultText: 'Octave', result: '', missCount: 0},
 	]
 	const [resultList, setResultList] = useState<QuestionResult[]>(questionResults);
-		
+	
+	// 選択肢押下時の処理
 	const handleAnswerButtonClick = (answerText: string, value: number): void=> {
 
 		const nextList = resultList.map((list) => {
@@ -111,24 +119,20 @@ const IntervalTrainingQuiz = () => {
 					return {...list, result:'inCorrect', missCount: list.missCount + 1}
 				}
 			}
-
-			if (currentQuestion > 9) {
-						// 10問回答後、結果見るボタン表示
-						setResultQuiz(true);
-						setNextQuiz(false);
-			}
-
 			return list;
 		})
 		setResultList(nextList);
 	}
-
-		// ボタン押下時音を鳴らす
-		const jsplay = () => {
-			my_audio.currentTime = 0;
-			my_audio.play();
-			setListenCount((listenCount) => listenCount + 1);
+	
+	// ボタン押下時音を鳴らす
+	const jsplay = () => {
+		my_audio.currentTime = 0;
+		my_audio.play();
+		setListenCount((listenCount) => listenCount + 1);
+		if (playSound === false) {
+			setPlaySound(true);
 		}
+	}
 
 	// 次の問題を表示
 	const nextDisplay = () => {
@@ -136,6 +140,7 @@ const IntervalTrainingQuiz = () => {
 		// 選択肢のボタンのcssを破棄
 		setAnswer('');
 		setNextText('スキップ');
+		setPlaySound(false);
 	}	
 
 	// 結果を表示
@@ -165,7 +170,9 @@ const IntervalTrainingQuiz = () => {
 							<Typography className="sub-title" variant="h2">{currentQuestion}問 このインターバルは？</Typography>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
-							<Button className="main-button" onClick={() => jsplay()} variant='outlined'>再生</Button>
+							<Button 
+								startIcon={playSound === false ?  <PlayArrowIcon className="play-icon"/> : <ReplayIcon className="play-icon"/>}
+								className="main-button" onClick={() => jsplay()} variant='outlined'>{playSound === false ? '再生' : 'リプレイ'}</Button>
 						</Box>
 					</Box>
 					<Card className="cardStyle" sx={{margin: '35px 20px 35px 20px', height: '280px'}} variant="outlined">
@@ -174,11 +181,9 @@ const IntervalTrainingQuiz = () => {
 						</Box>
 						<Box sx={{padding: '0 10px'}}>
 							<Answer 
-								currentQuestion={currentQuestion}
 								questions={questions}
 								handleAnswerButtonClick={handleAnswerButtonClick}
 								answer={answer}
-								selectValue={selectValue}
 								resultList={resultList}
 							/>
 						</Box>
@@ -188,7 +193,7 @@ const IntervalTrainingQuiz = () => {
 							</Box>
 							
 							<Box className={resultQuiz ? "" : "invisible"}>
-								<Button className="result-button" onClick={() => resultDisplay()} variant='outlined'>結果</Button>
+								<Button className={answer === 'correct' ? "result-button" : "skip-button"} onClick={() => resultDisplay()} variant='outlined'>結果</Button>
 							</Box>
 						</Box>
 					</Card>
