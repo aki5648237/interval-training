@@ -20,16 +20,20 @@ export const Answer = ({questions, handleAnswerButtonClick, answer, resultList}:
 		<div>
 			{
 				questions[0].answerOptions.map((item, index) => {
-					return <Box sx={{ width: '50%', textAlign: 'center', display: 'inline-block'}}>
-										<Button
-											className={`${"option-button"} ${resultList[index].result === 'correct' ? "correct" : ""} ${resultList[index].result === 'inCorrect' ? "inCorrect" : ""} ${answer === 'correct' && resultList[index].result === '' ? "unSelected": ""}`}
-											onClick={() => handleAnswerButtonClick(item.answerText, item.value)}
-											disabled={answer === 'correct'}
-											variant='outlined'>{item.answerText}
-											{resultList[index].result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
-											{resultList[index].result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
-										</Button>
-									</Box>
+					return (
+						<Box sx={{ width: '50%', textAlign: 'center', display: 'inline-block'}}>
+							<Button
+								className={`${"option-button"} ${resultList[index].result === 'correct' ? "correct" : ""} 
+								${resultList[index].result === 'inCorrect' ? "inCorrect" : ""} 
+								${answer === 'correct' && resultList[index].result === '' ? "unSelected": ""}`}
+								onClick={() => handleAnswerButtonClick(item.answerText, item.value)}
+								disabled={answer === 'correct'}
+								variant='outlined'>{item.answerText}
+								{resultList[index].result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
+								{resultList[index].result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
+							</Button>
+						</Box>
+					)
 			})}
 		</div>
 	);
