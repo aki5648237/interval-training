@@ -1,8 +1,8 @@
 
 import { Typography, Button, Card, Box} from '@mui/material/';
-import { Question } from './intervalTrainingQuiz';
-import { QuestionResult } from './intervalTrainingQuiz';
-import "../style/styles.css";
+import { Question } from '../intervalTrainingQuiz';
+import { QuestionResult } from '../intervalTrainingQuiz';
+import "../../../../style/styles.css";
 
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import CloseIcon from '@mui/icons-material/Close';

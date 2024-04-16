@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
-import { Typography, Button, Box, Container, Card} from '@mui/material/';
-import AppHeader from "./appHeader";
+import { Typography, Button, Box} from '@mui/material/';
+import AppHeader from '../common/appHeader';
 
-export const IntervalTraining = () => {
-  const navigate = useNavigate();
-  return (
-    <Box className="container">
+export const IntervalTrainingTop = () => {
+	const navigate = useNavigate();
+	return (
+		<Box className="container">
      <AppHeader />
      <Box sx={{textAlign: 'center', marginTop: '40px'}}>
       <Typography className="sub-title" variant="h2">インターバルクイズ</Typography>
@@ -19,7 +19,7 @@ export const IntervalTraining = () => {
         <Button className="main-button" onClick={() => navigate('/IntervalTrainingQuiz')}>クイズスタート</Button>
       </Box>
     </Box>
-)
-}
+	)
 
-export default IntervalTraining;
+}
+export default IntervalTrainingTop;

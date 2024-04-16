@@ -1,5 +1,5 @@
 import { Typography, Box, Container} from '@mui/material/';
-import image from '../images/wood.jpeg';
+import image from '../../../images/wood.jpeg';
 
 export const AppHeader = () => {
 	return (

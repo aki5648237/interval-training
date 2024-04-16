@@ -1,16 +1,22 @@
 import { useNavigate } from "react-router-dom"
 import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
 import {useState, useEffect} from 'react';
-import { Answer } from './intervalTrainingAnswer'; 
-import major3rd from '../sound/major3rd.mp3';
-import perfect5th from '../sound/perfect5th.mp3';
-import octabe from '../sound/octave.mp3';
+import { Answer } from './common/intervalTrainingAnswer'; 
+
+// 機能コンポーネント
+import SetQuestion from "./common/setQuestion";
+import HandleAnswerButtonClick from "./common/handleAnswerButtonClick";
+
+// state
+// import { UseSelector, useSelector } from "react-redux";
+import { useSelector } from "../../../stores";
+
 /** @jsxImportSource @emotion/react */
-import AppHeader from "./appHeader";
+import AppHeader from "../../contents/common/appHeader";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ReplayIcon from '@mui/icons-material/Replay';
 
-let my_audio: HTMLAudioElement;
+
 // 際レンダリング防止のため、最初に定義
 let rand: number;
 
@@ -25,6 +31,8 @@ export type QuestionResult = {
 	missCount: number;
 }
 
+let my_audio: HTMLAudioElement;
+
 export type Question = {
   answerOptions: AnswerOption[];
 }
@@ -32,6 +40,8 @@ export type Question = {
 const IntervalTrainingQuiz = () => {
 
 	const navigate = useNavigate();
+
+	const answerA = useSelector((state) => state.answer)
 
 	// 問題No
 	const [currentQuestion, setCurrentQuestion] =useState<number>(1);
@@ -59,20 +69,10 @@ const IntervalTrainingQuiz = () => {
 	// 問題を定数soudNameにランダム格納
 	useEffect(() => {
 		rand = Math.floor(Math.random() * questions[0].answerOptions.length);
-		// soundName = questions[0].answerOptions[rand].answerText;
-
-		switch (rand) {
-			case 0:
-				my_audio = new Audio(major3rd);
-				break;
-			case 1:
-				my_audio = new Audio(perfect5th);
-				break;
-			case 2:
-				my_audio = new Audio(octabe);
-				break;
-		}
-
+		
+		// 問題をセット
+		my_audio = SetQuestion(rand);
+	
 		// クイズ結果リストの結果を破棄
 		const nextList = resultList.map((list) => {
 			return {...list, result:''};
@@ -107,7 +107,9 @@ const IntervalTrainingQuiz = () => {
 	
 	// 選択肢押下時の処理
 	const handleAnswerButtonClick = (answerText: string, value: number): void=> {
-
+	
+		// const nextList =  HandleAnswerButtonClick(resultList, answerText, value, rand);
+	
 		const nextList = resultList.map((list) => {
 			if (list.resultText === answerText) {
 				if (rand === value) {
@@ -126,8 +128,11 @@ const IntervalTrainingQuiz = () => {
 	
 	// ボタン押下時音を鳴らす
 	const jsplay = () => {
-		my_audio.currentTime = 0;
-		my_audio.play();
+		if (my_audio !== undefined) {
+			my_audio.currentTime = 0;
+			my_audio.play();
+		}
+			
 		setListenCount((listenCount) => listenCount + 1);
 		if (playSound === false) {
 			setPlaySound(true);
