@@ -70,8 +70,6 @@ const IntervalTrainingQuiz: FC = () => {
 	const [resultQuiz, setResultQuiz] = useState<boolean>(false);
 	// 正解、不正解のフラグ
 	const [answer, setAnswer] = useState<string>('');
-	// 選択肢したボタンのvalue
-	const [selectValue, setSelectValue] = useState<number>(99);
 	// 再生押下時のフラグ
 	const [playSound, setPlaySound] = useState<boolean>(false)
 	// スキップ/次へ文言
@@ -126,28 +124,32 @@ const IntervalTrainingQuiz: FC = () => {
 	
 	// 選択肢押下時の処理
 	const handleAnswerButtonClick = (value: number): void=> {
+
+		const nextList =  HandleAnswerButtonClick(questionList, value, rand);
 	
-		const nextList: Question[] = [
-			{
-				answerOptions: questionList[0].answerOptions.map((list, index) => {
-					if (value === list.value) {
-						if (rand === value && value === list.value) {
-							setAnswer('correct');
-							setNextText('次へ');
-							return {...list, result:'correct', missCount: list.missCount};
-						} else {
-							return {...list, result:'inCorrect', missCount: list.missCount + 1};
-						}
-					}
-					else {
-						return {...list}
-					}
-				})
-			}
-		];
+		// const nextList: Question[] = [
+		// 	{
+		// 		answerOptions: questionList[0].answerOptions.map((list, index) => {
+		// 			if (value === list.value) {
+		// 				if (rand === value && value === list.value) {
+		// 					setAnswer('correct');
+		// 					setNextText('次へ');
+		// 					return {...list, result:'correct', missCount: list.missCount};
+		// 				} else {
+		// 					return {...list, result:'inCorrect', missCount: list.missCount + 1};
+		// 				}
+		// 			}
+		// 			else {
+		// 				return {...list}
+		// 			}
+		// 		})
+		// 	}
+		// ];
 		setQuestionList(nextList);
 	}
-	// const nextList =  HandleAnswerButtonClick(questionList,value, rand);
+
+	
+	// setQuestionList(nextList);
 	
 	
 	// ボタン押下時音を鳴らす

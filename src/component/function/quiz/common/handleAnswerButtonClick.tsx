@@ -1,14 +1,10 @@
-import { Question, QuestionResult } from "../intervalTrainingQuiz";
-import {  useDispatch } from "react-redux";
-import { useSelector } from "../../../../stores";
-import { setAnswer } from "../../../../stores/answer";
+import { Question } from "../intervalTrainingQuiz";
 
-
-export const HandleAnswerButtonClick = (questionList : Question[], value: number, rand : number) => {
+export const HandleAnswerButtonClick = (questionList : Question[], value: number, rand : number) : Question[] => {
 
 	const nextList: Question[] = [
 		{
-			answerOptions: questionList[0].answerOptions.map((list, index) => {
+			answerOptions: questionList[0].answerOptions.map((list) => {
 				if (value === list.value) {
 					if (rand === value && value === list.value) {
 						// setAnswer('correct');
@@ -24,8 +20,6 @@ export const HandleAnswerButtonClick = (questionList : Question[], value: number
 			})
 		}
 	];
-
 	return nextList;
-
 }
 export default HandleAnswerButtonClick;
