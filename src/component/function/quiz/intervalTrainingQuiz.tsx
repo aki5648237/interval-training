@@ -1,20 +1,21 @@
 import { useNavigate } from "react-router-dom"
 import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
-import {useState, useEffect} from 'react';
+import {FC, useState, useEffect, useContext} from 'react';
 import { Answer } from './common/intervalTrainingAnswer'; 
 
 // 機能コンポーネント
 import SetQuestion from "./common/setQuestion";
 import HandleAnswerButtonClick from "./common/handleAnswerButtonClick";
 
-// state
-// import { UseSelector, useSelector } from "react-redux";
-import { useSelector } from "../../../stores";
+import { ChangeContext } from "../../../App";
+import { UserContext } from "../../../context/context";
+
 
 /** @jsxImportSource @emotion/react */
 import AppHeader from "../../contents/common/appHeader";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ReplayIcon from '@mui/icons-material/Replay';
+
 
 
 // 際レンダリング防止のため、最初に定義
@@ -37,11 +38,19 @@ export type Question = {
   answerOptions: AnswerOption[];
 }
 
-const IntervalTrainingQuiz = () => {
+const IntervalTrainingQuiz: FC = () => {
+
+	const {changeContext, setChangeContext} = useContext(ChangeContext)
+	const {test, setTest} = useContext(UserContext)
+	setTest('aaaaa');
+	console.log(test)
+	console.log(changeContext)
+	setChangeContext(false);
+	console.log(changeContext)
+	// const test = useContext(UserContext)
+	// console.log(test)
 
 	const navigate = useNavigate();
-
-	const answerA = useSelector((state) => state.answer)
 
 	// 問題No
 	const [currentQuestion, setCurrentQuestion] =useState<number>(1);
@@ -69,6 +78,9 @@ const IntervalTrainingQuiz = () => {
 	// 問題を定数soudNameにランダム格納
 	useEffect(() => {
 		rand = Math.floor(Math.random() * questions[0].answerOptions.length);
+
+		
+		console.log(answer)
 		
 		// 問題をセット
 		my_audio = SetQuestion(rand);
@@ -125,6 +137,8 @@ const IntervalTrainingQuiz = () => {
 		})
 		setResultList(nextList);
 	}
+	// const nextList =  HandleAnswerButtonClick(resultList, answerText, value, rand);
+	
 	
 	// ボタン押下時音を鳴らす
 	const jsplay = () => {
