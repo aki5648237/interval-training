@@ -9,28 +9,27 @@ import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
 	questions: Question[]
-	handleAnswerButtonClick: (answerText: string, value: number) => void
+	handleAnswerButtonClick: (value: number) => void
 	answer: string
-	resultList: QuestionResult[]
 }
 
-export const Answer = ({questions, handleAnswerButtonClick, answer, resultList}: Props) => {
+export const Answer = ({questions, handleAnswerButtonClick, answer}: Props) => {
 	
 	return (
 		<div>
 			{
-				questions[0].answerOptions.map((item, index) => {
+				questions[0].answerOptions.map((item) => {
 					return (
 						<Box sx={{ width: '50%', textAlign: 'center', display: 'inline-block'}}>
 							<Button
-								className={`${"option-button"} ${resultList[index].result === 'correct' ? "correct" : ""} 
-								${resultList[index].result === 'inCorrect' ? "inCorrect" : ""} 
-								${answer === 'correct' && resultList[index].result === '' ? "unSelected": ""}`}
-								onClick={() => handleAnswerButtonClick(item.answerText, item.value)}
+								className={`${"option-button"} ${item.result === 'correct' ? "correct" : ""} 
+								${item.result === 'inCorrect' ? "inCorrect" : ""} 
+								${answer === 'correct' && item.result === '' ? "unSelected": ""}`}
+								onClick={() => handleAnswerButtonClick(item.value)}
 								disabled={answer === 'correct'}
 								variant='outlined'>{item.answerText}
-								{resultList[index].result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
-								{resultList[index].result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
+								{item.result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
+								{item.result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
 							</Button>
 						</Box>
 					)

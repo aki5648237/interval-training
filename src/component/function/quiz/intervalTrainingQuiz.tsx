@@ -24,6 +24,8 @@ let rand: number;
 type AnswerOption ={
 	answerText: string;
 	value: number;
+	result: string;
+	missCount: number;
 }
 
 export type QuestionResult = {
@@ -43,10 +45,10 @@ const IntervalTrainingQuiz: FC = () => {
 	const {changeContext, setChangeContext} = useContext(ChangeContext)
 	const {test, setTest} = useContext(UserContext)
 	setTest('aaaaa');
-	console.log(test)
-	console.log(changeContext)
-	setChangeContext(false);
-	console.log(changeContext)
+	// console.log(test)
+	// console.log(changeContext)
+	// setChangeContext(false);
+	// console.log(changeContext)
 	// const test = useContext(UserContext)
 	// console.log(test)
 
@@ -86,10 +88,14 @@ const IntervalTrainingQuiz: FC = () => {
 		my_audio = SetQuestion(rand);
 	
 		// クイズ結果リストの結果を破棄
-		const nextList = resultList.map((list) => {
-			return {...list, result:''};
-		})
-		setResultList(nextList);
+		const nextList: Question[] = [
+			{
+				answerOptions : questionList[0].answerOptions.map((list) => {
+					return {...list, result: ''}
+				})
+			}
+		]
+		setQuestionList(nextList);
 
 		if (currentQuestion > 9) {
 			// 10問回答後、結果見るボタン表示
@@ -102,42 +108,46 @@ const IntervalTrainingQuiz: FC = () => {
 	const questions: Question[] = [
 		{
 			answerOptions:[
-				{answerText: 'Major 3rd', value: 0},
-				{answerText: 'Perfect 5th', value: 1},
-				{answerText: 'Octave', value: 2},
+				{answerText: 'Major 3rd', value: 0, result: '', missCount: 0},
+				{answerText: 'Perfect 5th', value: 1, result: '', missCount: 0},
+				{answerText: 'Octave', value: 2, result: '', missCount: 0},
 			]
 		},
 	];
+	const [questionList, setQuestionList] = useState<Question[]>(questions);
 
 	// クイズの結果
-	const questionResults: QuestionResult[] = [
-		{resultText: 'Major 3rd', result: '', missCount: 0},
-		{resultText: 'Perfect 5th', result: '', missCount: 0},
-		{resultText: 'Octave', result: '', missCount: 0},
-	]
-	const [resultList, setResultList] = useState<QuestionResult[]>(questionResults);
+	// const questionResults: QuestionResult[] = [
+	// 	{resultText: 'Major 3rd', result: '', missCount: 0},
+	// 	{resultText: 'Perfect 5th', result: '', missCount: 0},
+	// 	{resultText: 'Octave', result: '', missCount: 0},
+	// ]
+	// const [resultList, setResultList] = useState<QuestionResult[]>(questionResults);
 	
 	// 選択肢押下時の処理
-	const handleAnswerButtonClick = (answerText: string, value: number): void=> {
+	const handleAnswerButtonClick = (value: number): void=> {
 	
-		// const nextList =  HandleAnswerButtonClick(resultList, answerText, value, rand);
-	
-		const nextList = resultList.map((list) => {
-			if (list.resultText === answerText) {
-				if (rand === value) {
-					setAnswer('correct');
-					setNextText('次へ');
-					return {...list, result:'correct'}
-				}
-				else {
-					return {...list, result:'inCorrect', missCount: list.missCount + 1}
-				}
+		const nextList: Question[] = [
+			{
+				answerOptions: questionList[0].answerOptions.map((list, index) => {
+					if (value === list.value) {
+						if (rand === value && value === list.value) {
+							setAnswer('correct');
+							setNextText('次へ');
+							return {...list, result:'correct', missCount: list.missCount};
+						} else {
+							return {...list, result:'inCorrect', missCount: list.missCount + 1};
+						}
+					}
+					else {
+						return {...list}
+					}
+				})
 			}
-			return list;
-		})
-		setResultList(nextList);
+		];
+		setQuestionList(nextList);
 	}
-	// const nextList =  HandleAnswerButtonClick(resultList, answerText, value, rand);
+	// const nextList =  HandleAnswerButtonClick(questionList,value, rand);
 	
 	
 	// ボタン押下時音を鳴らす
@@ -200,10 +210,9 @@ const IntervalTrainingQuiz: FC = () => {
 						</Box>
 						<Box sx={{padding: '0 10px'}}>
 							<Answer 
-								questions={questions}
+								questions={questionList}
 								handleAnswerButtonClick={handleAnswerButtonClick}
 								answer={answer}
-								resultList={resultList}
 							/>
 						</Box>
 						<Box sx={{textAlign: 'center', marginTop: '30px'}}>
