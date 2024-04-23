@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
 import {FC, useState, useEffect, useContext} from 'react';
 import { Answer } from './common/intervalTrainingAnswer'; 
+import { Question } from "./common/getQuizContents";
 
 // 機能コンポーネント
 import { SetQuestionData } from "./common/setQuestionData";
@@ -11,29 +12,19 @@ import { HandlePlayButtonClick } from "./common/handleButtonClick";
 import { HandleResultDisplayButton } from "./common/handleButtonClick";
 import { HandleNextDisplayButtonClick as HandleNextDisplayButton } from "./common/handleButtonClick";
 import { HandleResetButton } from "./common/handleButtonClick";
+import { GetQuizContent } from "./common/getQuizContents";
 import { useAnswer } from "../../../hook/playBackHooks";
+
+// 表示コンポーネント
+import { IntervalQuizContents } from "../../contents/quiz/intervalQuizContents";
 
 /** @jsxImportSource @emotion/react */
 import AppHeader from "../../contents/common/appHeader";
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import ReplayIcon from '@mui/icons-material/Replay';
 
 // 際レンダリング防止のため、最初に定義
 let rand: number;
 
-type AnswerOption ={
-	answerText: string;
-	value: number;
-	result: string;
-	missCount: number;
-}
-
 let my_audio: HTMLAudioElement;
-
-export type Question = {
-  answerOptions: AnswerOption[];
-}
-
 const IntervalTrainingQuiz: FC = () => {
 
 	const navigate = useNavigate();
@@ -62,7 +53,7 @@ const IntervalTrainingQuiz: FC = () => {
 
 	// 問題を定数soudNameにランダム格納
 	useEffect(() => {
-		rand = Math.floor(Math.random() * questions[0].answerOptions.length);
+		rand = Math.floor(Math.random() * questions.length);
 
 		// 問題をセット
 		my_audio = SetQuestion(rand);
@@ -71,19 +62,8 @@ const IntervalTrainingQuiz: FC = () => {
 
 	},[currentQuestion]);
 
-	// クイズ内容
-	const questions: Question[] = [
-		{
-			answerOptions:[
-				{answerText: 'Major 3rd', value: 0, result: '', missCount: 0},
-				{answerText: 'Perfect 5th', value: 1, result: '', missCount: 0},
-				{answerText: 'Octave', value: 2, result: '', missCount: 0},
-			]
-		},
-	];
-
-	
-
+	// クイズ内容の取得
+	const questions = GetQuizContent();
 	const [questionList, setQuestionList] = useState<Question[]>(questions);
 
 	// 選択肢押下時の処理
@@ -117,41 +97,20 @@ const IntervalTrainingQuiz: FC = () => {
 			<AppHeader />
 			<Box className="container">
 				<Box className={openQuiz ? "invisible" : ""}>
-					<Box sx={{margin: '40px 20px 0 20px'}}>
-						<Box sx={{ textAlign: 'center'}}>
-							<Typography className="sub-title" variant="h2">{currentQuestion}問 このインターバルは？</Typography>
-						</Box>
-						<Box sx={{textAlign: 'center', marginTop: '35px'}}>
-							<Button 
-								startIcon={playSound === false ?  <PlayArrowIcon className="play-icon"/> : <ReplayIcon className="play-icon"/>}
-								className="main-button" onClick={() => handlePlayButton()} variant='outlined'>{playSound === false ? '再生' : 'リプレイ'}</Button>
-						</Box>
-					</Box>
-					<Card className="cardStyle" sx={{margin: '35px 20px 35px 20px', height: '280px'}} variant="outlined">
-						<Box sx={{backgroundColor: 'rgba(170, 95, 0, 0.6)', textAlign: 'center'}}>
-							<Typography variant="h2" sx={{padding : '6px', color: 'white'}}>選択肢</Typography>
-						</Box>
-						<Box sx={{padding: '0 10px'}}>
-							<Answer 
-								questions={questionList}
-								handleAnswerButtonClick={handleAnswerButton}
-								answer={answer}
-							/>
-						</Box>
-						<Box sx={{textAlign: 'center', marginTop: '30px'}}>
-							<Box className={nextQuiz ? "" : "invisible"}>
-								<Button className={`${"sub-button"} ${nextText === 'スキップ' ? "skip-button": ""}`} onClick={() => handleNextDisplayButton()}  variant='outlined'>{nextText}</Button>
-							</Box>
-							
-							<Box className={resultQuiz ? "" : "invisible"}>
-								<Button className={answer === 'correct' ? "result-button" : "skip-button"} onClick={() => handleResultDisplayButton()} variant='outlined'>結果</Button>
-							</Box>
-						</Box>
-					</Card>
-					
-					<Box sx={{textAlign: 'center'}}>
-						<Button className="sub-button" onClick={() => navigate('/')} variant='outlined'>Top</Button>
-					</Box>
+					<IntervalQuizContents 
+						currentQuestion={currentQuestion}
+						playSound={playSound}
+						nextQuiz={nextQuiz}
+						nextText={nextText}
+						resultQuiz={resultQuiz}
+						answer={answer}
+						questionList={questionList}
+						handlePlayButton={handlePlayButton}
+						handleAnswerButton={handleAnswerButton}
+						handleNextDisplayButton={handleNextDisplayButton}
+						handleResultDisplayButton={handleResultDisplayButton}
+						// navigate={navigate}
+					/>
 				</Box>
 					<Box className={openResult ? "invisible" : ""} sx={{marginTop: '40px'}}>
 						<Box sx={{textAlign: 'center'}}>

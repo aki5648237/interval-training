@@ -1,6 +1,6 @@
 
 import { Typography, Button, Card, Box} from '@mui/material/';
-import { Question } from '../intervalTrainingQuiz';
+import { Question } from './getQuizContents';
 import "../../../../style/styles.css";
 
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
@@ -13,11 +13,10 @@ type Props = {
 }
 
 export const Answer = ({questions, handleAnswerButtonClick, answer}: Props) => {
-	
 	return (
 		<div>
 			{
-				questions[0].answerOptions.map((item) => {
+				questions.map((item) => {
 					return (
 						<Box sx={{ width: '50%', textAlign: 'center', display: 'inline-block'}}>
 							<Button
@@ -36,5 +35,4 @@ export const Answer = ({questions, handleAnswerButtonClick, answer}: Props) => {
 		</div>
 	);
 }
-
 export default Answer;

@@ -1,26 +1,23 @@
-import { Question } from "../intervalTrainingQuiz";
+import { Question } from "./getQuizContents";
 
 // 選択肢押下時の処理
 export const HandleAnswerButtonClick = (questionList : Question[], value: number, rand : number, setAnswer : Function, setNextText: Function) : Question[] => {
 
-	const nextList: Question[] = [
-		{
-			answerOptions: questionList[0].answerOptions.map((list) => {
-				if (value === list.value) {
-					if (rand === value && value === list.value) {
-						setAnswer('correct');
-						setNextText('次へ');
-						return {...list, result:'correct', missCount: list.missCount};
-					} else {
-						return {...list, result:'inCorrect', missCount: list.missCount + 1};
-					}
-				}
-				else {
-					return {...list}
-				}
-			})
+	const nextList = questionList.map((list) => {
+		if (value === list.value) {
+			if (rand === value && value === list.value) {
+				setAnswer('correct');
+				setNextText('次へ');
+				return {...list, result:'correct', missCount: list.missCount};
+			} else {
+				return {...list, result:'inCorrect', missCount: list.missCount + 1};
+			}
 		}
-	]
+		else {
+			return {...list}
+		}
+	})
+	
 	return nextList;
 }
 export default HandleAnswerButtonClick;
