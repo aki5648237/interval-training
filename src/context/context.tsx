@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, createContext, useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 type Props = {
 	children: ReactNode;

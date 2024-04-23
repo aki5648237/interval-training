@@ -1,13 +1,9 @@
 import { useNavigate, } from "react-router-dom"
-import { useContext } from "react";
-import { UserContext } from "../../../context/context";
 import { Typography, Button, Box} from '@mui/material/';
 import AppHeader from '../common/appHeader';
 
 export const IntervalTrainingTop = () => {
 	const navigate = useNavigate();
-
-  // const [test, setTest] = useContext(UserContext);
 
 	return (
 		<Box className="container">
@@ -25,6 +21,5 @@ export const IntervalTrainingTop = () => {
       </Box>
     </Box>
 	)
-
 }
 export default IntervalTrainingTop;
