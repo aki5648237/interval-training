@@ -19,7 +19,6 @@ type Props = {
   handleAnswerButton : (value: number) => void,
   handleNextDisplayButton : () => void,
   handleResultDisplayButton : () => void,
-  // navigate : Function,
 }
 
 export const IntervalQuizContents: React.FC<Props> = (
@@ -35,7 +34,6 @@ export const IntervalQuizContents: React.FC<Props> = (
 		handleAnswerButton,
 		handleNextDisplayButton,
 		handleResultDisplayButton,
-		// navigate : Function
 	} : Props
 ) => {
 	const navigate = useNavigate();

@@ -63,7 +63,7 @@ const IntervalTrainingQuiz: FC = () => {
 	// クイズ内容の取得
 	const questions = GetQuizContent();
 	const [questionList, setQuestionList] = useState<Question[]>(questions);
-	
+
 	// 選択肢押下時の処理
 	const handleAnswerButton = (value: number): void=> {
 		const nextList =  HandleAnswerButton(questionList, value, rand, setAnswer, setNextText);
@@ -88,8 +88,10 @@ const IntervalTrainingQuiz: FC = () => {
 
 	return (
 		<>
+			{/* ヘッダー */}
 			<AppHeader />
 			<Box className="container">
+				{/* クイズ内容 */}
 				<Box className={openQuiz ? "invisible" : ""}>
 					<IntervalQuizContents 
 						currentQuestion={currentQuestion}
@@ -103,9 +105,9 @@ const IntervalTrainingQuiz: FC = () => {
 						handleAnswerButton={handleAnswerButton}
 						handleNextDisplayButton={handleNextDisplayButton}
 						handleResultDisplayButton={handleResultDisplayButton}
-						// navigate={navigate}
 					/>
 				</Box>
+				{/* クイズ結果 */}
 				<Box className={openResult ? "invisible" : ""} sx={{marginTop: '40px'}}>
 					<IntervalQuizResultContents 
 						handleResetButton={handleResetButton}
