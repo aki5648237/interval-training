@@ -1,5 +1,5 @@
 
-import { Typography, Button, Card, Box} from '@mui/material/';
+import { Button, Box} from '@mui/material/';
 import { Question } from './getQuizContents';
 import "../../../../style/styles.css";
 

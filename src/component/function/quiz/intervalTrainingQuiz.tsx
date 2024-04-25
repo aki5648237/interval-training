@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
-import {FC, useState, useEffect, useContext} from 'react';
-import { Answer } from './common/intervalTrainingAnswer'; 
+import { Box,} from '@mui/material/';
+import {FC, useState, useEffect} from 'react';
 import { Question } from "./common/getQuizContents";
 
 // 機能コンポーネント
@@ -17,6 +16,7 @@ import { useAnswer } from "../../../hook/playBackHooks";
 
 // 表示コンポーネント
 import { IntervalQuizContents } from "../../contents/quiz/intervalQuizContents";
+import { IntervalQuizResultContents } from "../../contents/quiz/intervalQuizResultContents";
 
 /** @jsxImportSource @emotion/react */
 import AppHeader from "../../contents/common/appHeader";
@@ -26,8 +26,6 @@ let rand: number;
 
 let my_audio: HTMLAudioElement;
 const IntervalTrainingQuiz: FC = () => {
-
-	const navigate = useNavigate();
 
 	// 問題No
 	const [currentQuestion, setCurrentQuestion] =useState<number>(1);
@@ -65,28 +63,24 @@ const IntervalTrainingQuiz: FC = () => {
 	// クイズ内容の取得
 	const questions = GetQuizContent();
 	const [questionList, setQuestionList] = useState<Question[]>(questions);
-
+	
 	// 選択肢押下時の処理
 	const handleAnswerButton = (value: number): void=> {
 		const nextList =  HandleAnswerButton(questionList, value, rand, setAnswer, setNextText);
 		setQuestionList(nextList);
 	}
-
 	// ボタン押下時音を鳴らす
 	const handlePlayButton = () => {
 		HandlePlayButtonClick(my_audio, playSound, setPlaySound);
 	}
-
 	// 次の問題を表示
 	const handleNextDisplayButton = () => {
 		HandleNextDisplayButton(currentQuestion, setCurrentQuestion, setAnswer,setNextText, setPlaySound);
-	}	
-
+	}
 	// 結果を表示
 	const handleResultDisplayButton = () => {
 		HandleResultDisplayButton(setOpenQuiz, setOpenResult);
 	}
-	
 	// 結果の破棄
 	const handleResetButton = () => {
 		HandleResetButton(setCurrentQuestion, setOpenQuiz, setOpenResult, setNextQuiz, setResultQuiz, setAnswer);
@@ -112,32 +106,11 @@ const IntervalTrainingQuiz: FC = () => {
 						// navigate={navigate}
 					/>
 				</Box>
-					<Box className={openResult ? "invisible" : ""} sx={{marginTop: '40px'}}>
-						<Box sx={{textAlign: 'center'}}>
-							<Typography className="sub-title" variant="h2" sx={{paddingTop: '50px', marginBottom: '10px'}}>
-								クイズの結果
-							</Typography>
-						</Box>
-						<Box sx={{margin: '0 20px 40px 20px', textAlign: 'center'}}>
-							<Box>
-								<List>
-									<ListItem>
-										<ListItemText>聞いた回数{listenCount}</ListItemText>
-									</ListItem>
-									<ListItem>
-										{/* <ListItemText>間違えた回数{missCount}</ListItemText> */}
-									</ListItem>
-									<ListItem>
-										<ListItemText>得点</ListItemText>
-									</ListItem>
-								</List>
-							</Box>
-						</Box>
-						<Box sx={{ textAlign: 'center', marginTop: '10px'}}>
-							<Button className="button" sx={{width: '130px', height: '50px', marginRight:'20px', fontSize: '18px'}} onClick={() => navigate('/')} variant='outlined'>Top</Button>
-							<Button className="button" sx={{width: '130px', height: '50px', marginLeft: '20px', fontSize: '18px'}} onClick={() => handleResetButton()} variant='outlined'>もう一度</Button>
-						</Box>
-					</Box>
+				<Box className={openResult ? "invisible" : ""} sx={{marginTop: '40px'}}>
+					<IntervalQuizResultContents 
+						handleResetButton={handleResetButton}
+					/>
+				</Box>
 			</Box>
 		</>
 	)
