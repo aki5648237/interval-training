@@ -64,10 +64,6 @@ Button {
 	background-color: rgba(169, 169, 169, 0.5) !important;
 }
 
-.title {
-	color: rgb(255, 255, 255);
-}
-
 .sub-title {
 	display: inline-block;
 	padding: 0.8rem 0;
@@ -99,7 +95,7 @@ Button {
 }
 
 .text {
-	font-size: 18px !important;
+
 	font-weight: 520 !important;
 }
 

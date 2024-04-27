@@ -1,0 +1,15 @@
+.l-header {
+	height: 65px;
+	margin-bottom: 40px;
+	display: flex;
+  align-items: center;
+	background-image:url(../../images/wood.jpeg);
+
+	&__inner {
+		margin: 0 auto;
+	}
+
+	&__title {
+		color: #ffffff;	
+	}
+}

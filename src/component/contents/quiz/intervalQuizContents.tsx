@@ -41,7 +41,7 @@ export const IntervalQuizContents: React.FC<Props> = (
 		<>
 			<Box sx={{margin: '40px 20px 0 20px'}}>
 				<Box sx={{ textAlign: 'center'}}>
-					<Typography className="sub-title" variant="h2">{currentQuestion}問 このインターバルは？</Typography>
+					<h2 className="sub-title">{currentQuestion}問 このインターバルは？</h2>
 				</Box>
 				<Box sx={{textAlign: 'center', marginTop: '35px'}}>
 					<Button 
@@ -51,7 +51,7 @@ export const IntervalQuizContents: React.FC<Props> = (
 			</Box>
 			<Card className="cardStyle" sx={{margin: '35px 20px 35px 20px', height: '280px'}} variant="outlined">
 				<Box sx={{backgroundColor: 'rgba(170, 95, 0, 0.6)', textAlign: 'center'}}>
-					<Typography variant="h2" sx={{padding : '6px', color: 'white'}}>選択肢</Typography>
+					<h2>選択肢</h2>
 				</Box>
 				<Box sx={{padding: '0 10px'}}>
 					<Answer 
