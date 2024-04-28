@@ -87,34 +87,35 @@ const IntervalTrainingQuiz: FC = () => {
 	}
 
 	return (
-		<>
-			{/* ヘッダー */}
+		<div className="l-wrapper">
 			<AppHeader />
-			<Box className="container">
-				{/* クイズ内容 */}
-				<Box className={openQuiz ? "invisible" : ""}>
-					<IntervalQuizContents 
-						currentQuestion={currentQuestion}
-						playSound={playSound}
-						nextQuiz={nextQuiz}
-						nextText={nextText}
-						resultQuiz={resultQuiz}
-						answer={answer}
-						questionList={questionList}
-						handlePlayButton={handlePlayButton}
-						handleAnswerButton={handleAnswerButton}
-						handleNextDisplayButton={handleNextDisplayButton}
-						handleResultDisplayButton={handleResultDisplayButton}
-					/>
-				</Box>
-				{/* クイズ結果 */}
-				<Box className={openResult ? "invisible" : ""} sx={{marginTop: '40px'}}>
-					<IntervalQuizResultContents 
-						handleResetButton={handleResetButton}
-					/>
-				</Box>
-			</Box>
-		</>
+			<div className="l-main">
+				<div className="l-main__inner">
+					{/* クイズ内容 */}
+					<div className={openQuiz ? "invisible" : ""}>
+						<IntervalQuizContents 
+							currentQuestion={currentQuestion}
+							playSound={playSound}
+							nextQuiz={nextQuiz}
+							nextText={nextText}
+							resultQuiz={resultQuiz}
+							answer={answer}
+							questionList={questionList}
+							handlePlayButton={handlePlayButton}
+							handleAnswerButton={handleAnswerButton}
+							handleNextDisplayButton={handleNextDisplayButton}
+							handleResultDisplayButton={handleResultDisplayButton}
+						/>
+					</div>
+					{/* クイズ結果 */}
+					<div className={openResult ? "invisible" : ""}>
+						<IntervalQuizResultContents 
+							handleResetButton={handleResetButton}
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
 	)
 }
 export default IntervalTrainingQuiz;

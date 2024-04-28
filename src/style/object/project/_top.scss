@@ -1,3 +1,5 @@
+@import "../../foundation/color";
+
 .p-top-mv {
 	&__title {
 		display: inline-block;
@@ -11,9 +13,16 @@
 	font-size: 26px;
 	margin-bottom: 35px;
 	}
-
 	&__text {
 		font-weight: 520;
 		margin-bottom: 35px;
+	}
+	&__button-primary {
+		width: 240px;
+		height: 70px;
+		font-size: 25px;
+		font-weight: bold;
+		background-color: $c-accent;
+		color: $c-base;
 	}
 }

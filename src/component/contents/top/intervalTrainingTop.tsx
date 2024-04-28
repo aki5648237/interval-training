@@ -1,5 +1,4 @@
 import { useNavigate, } from "react-router-dom"
-import { Typography, Button, Box} from '@mui/material/';
 import AppHeader from '../common/appHeader';
 
 export const IntervalTrainingTop = () => {
@@ -18,7 +17,7 @@ export const IntervalTrainingTop = () => {
                 <br />
                 <div>問題数は10問です。</div>
               </div>
-              <Button className="main-button" onClick={() => navigate('/IntervalTrainingQuiz')}>クイズスタート</Button>
+              <button className="p-top-mv__button-primary" onClick={() => navigate('/IntervalTrainingQuiz')}>クイズスタート</button>
             </div>
           </section>
         </div>

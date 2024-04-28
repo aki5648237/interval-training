@@ -1,0 +1,56 @@
+@import "../../foundation/color";
+
+.p-quiz-mv {
+	&__title {
+		margin-bottom: 35px;
+	}
+	&__button-primary {
+	background-color: $c-accent;
+	color: $c-base;
+	width: 240px;
+	height: 70px;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 35px;
+	}
+	&__option-box {
+		text-align: center;
+		color: #000000;
+		border: 1px solid rgba(1, 0, 0, 0.4);
+	}
+	&__sub-title {
+		height: 32px;
+		background-color: $c-main-light;
+		color: $c-base;
+	}
+	&__quiz-option {
+		margin-bottom: 30px;
+		padding: 0 10px;
+	}
+	&__button-option {
+		width: 160px;
+		height: 50px;
+		margin-top: 20px;
+		font-size: 18px;
+		font-weight: bold;
+		text-transform: none;
+		&:disabled {
+			border: 1px solid rgba(0, 0, 0, 1);
+			color: #000000;
+		}
+	}
+	&__button-next {
+		width: 110px;
+		height: 40px;
+		font-size: 18px;
+		text-transform: none;
+		margin-bottom: 20px;
+	}
+	&__button-top {
+		width: 110px;
+		height: 40px;
+		font-size: 18px;
+		text-transform: none;
+		margin-top: 20px;
+	}
+}

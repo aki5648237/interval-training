@@ -18,18 +18,18 @@ export const Answer = ({questions, handleAnswerButtonClick, answer}: Props) => {
 			{
 				questions.map((item) => {
 					return (
-						<Box sx={{ width: '50%', textAlign: 'center', display: 'inline-block'}}>
-							<Button
-								className={`${"option-button"} ${item.result === 'correct' ? "correct" : ""} 
+						<div>
+							<button
+								className={`${"p-quiz-mv__button-option"} ${item.result === 'correct' ? "correct" : ""} 
 								${item.result === 'inCorrect' ? "inCorrect" : ""} 
 								${answer === 'correct' && item.result === '' ? "unSelected": ""}`}
 								onClick={() => handleAnswerButtonClick(item.value)}
 								disabled={answer === 'correct'}
-								variant='outlined'>{item.answerText}
+								>{item.answerText}
 								{item.result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
 								{item.result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
-							</Button>
-						</Box>
+							</button>
+						</div>
 					)
 			})}
 		</div>

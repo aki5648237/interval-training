@@ -1,3 +1,5 @@
+@import "./color";
+
 div {
 	font-family: YuGothic、游ゴシック体;
 	font-size: 18px;
@@ -16,5 +18,7 @@ h3 {
 }
 
 button {
+	background-color: $c-base;
+	border: 1px solid rgba(0,0,0,1);
 	border-radius: 8px;
 }
