@@ -2,16 +2,18 @@
 
 .p-quiz-mv {
 	&__title {
+		@include title-underline;
+		font-size: 26px;
 		margin-bottom: 35px;
 	}
 	&__button-primary {
-	background-color: $c-accent;
-	color: $c-base;
-	width: 240px;
-	height: 70px;
-	font-size: 25px;
-	font-weight: bold;
-	margin-bottom: 35px;
+		background-color: $c-accent;
+		color: $c-base;
+		width: 240px;
+		height: 70px;
+		font-size: 25px;
+		font-weight: bold;
+		margin-bottom: 35px;
 	}
 	&__option-box {
 		text-align: center;
@@ -27,8 +29,14 @@
 		margin-bottom: 30px;
 		padding: 0 10px;
 	}
+	&__button-option-box {
+		// display: inline;
+		text-align: left;
+	}
+	
 	&__button-option {
-		width: 160px;
+		position: relative;
+		width: 50%;
 		height: 50px;
 		margin-top: 20px;
 		font-size: 18px;
@@ -52,5 +60,22 @@
 		font-size: 18px;
 		text-transform: none;
 		margin-top: 20px;
+	}
+	&__play-icon {
+		position: relative;
+		top: 7px;
+		font-size: 35px !important;
+	}
+	&__circle-icon {
+		position: absolute;
+		top: 11px;
+		left: 8px;
+		color: $c-circle-icon;
+	}
+	&__cross-icon {
+		position: absolute;
+		top: 12px;
+		left: 8px;
+		color: $c-cross-icon;
 	}
 }

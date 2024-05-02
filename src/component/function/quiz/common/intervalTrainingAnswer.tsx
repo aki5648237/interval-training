@@ -14,22 +14,20 @@ type Props = {
 
 export const Answer = ({questions, handleAnswerButtonClick, answer}: Props) => {
 	return (
-		<div>
+		<div className="p-quiz-mv__button-option-box">
 			{
 				questions.map((item) => {
 					return (
-						<div>
-							<button
-								className={`${"p-quiz-mv__button-option"} ${item.result === 'correct' ? "correct" : ""} 
-								${item.result === 'inCorrect' ? "inCorrect" : ""} 
-								${answer === 'correct' && item.result === '' ? "unSelected": ""}`}
-								onClick={() => handleAnswerButtonClick(item.value)}
-								disabled={answer === 'correct'}
-								>{item.answerText}
-								{item.result === 'correct' ? <TripOriginIcon className='circle-icon'/> : ''}
-								{item.result === 'inCorrect' ? <CloseIcon className='cross-icon'/> : ''}	
-							</button>
-						</div>
+						<button
+							className={`${"p-quiz-mv__button-option"} ${item.result === 'correct' ? "correct" : ""} 
+							${item.result === 'inCorrect' ? "inCorrect" : ""} 
+							${answer === 'correct' && item.result === '' ? "unSelected": ""}`}
+							onClick={() => handleAnswerButtonClick(item.value)}
+							disabled={answer === 'correct'}
+							>{item.answerText}
+							{item.result === 'correct' ? <TripOriginIcon className='p-quiz-mv__circle-icon'/> : ''}
+							{item.result === 'inCorrect' ? <CloseIcon className='p-quiz-mv__cross-icon'/> : ''}	
+						</button>
 					)
 			})}
 		</div>

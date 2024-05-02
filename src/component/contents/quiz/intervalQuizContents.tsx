@@ -42,14 +42,12 @@ export const IntervalQuizContents: React.FC<Props> = (
 			<div className="p-quiz-mv-inner">
 				<div>
 						<h2 className="p-quiz-mv__title">{currentQuestion}問 このインターバルは？</h2>
-						{/* <Button 
-							startIcon={playSound === false ?  <PlayArrowIcon className="play-icon"/> : <ReplayIcon className="play-icon"/>}
-							className="p-quiz-mv__button-primary" onClick={() => handlePlayButton()} variant='outlined'>{playSound === false ? '再生' : 'リプレイ'}</Button> */}
 						<button className="p-quiz-mv__button-primary"
 							onClick={() => handlePlayButton()}>
-							{playSound === false ?  <PlayArrowIcon className="play-icon"/> : <ReplayIcon className="play-icon"/>}
-							{playSound === false ? '再生' : 'リプレイ'}
+							{playSound === false ?  <PlayArrowIcon className="p-quiz-mv__play-icon"/> : <ReplayIcon className="p-quiz-mv__play-icon"/>}
+							<span>{playSound === false ? '再生' : 'リプレイ'}</span>
 						</button>
+
 				</div>
 				<div className="p-quiz-mv__option-box">
 					<div className="p-quiz-mv__sub-title">
