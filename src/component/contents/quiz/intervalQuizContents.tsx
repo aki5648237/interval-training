@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import React from 'react';
-import { Typography, Button, Card, Box, List, ListItem, ListItemText} from '@mui/material/';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ReplayIcon from '@mui/icons-material/Replay';
 import { Question } from '../../function/quiz/common/getQuizContents';
-
 import Answer from '../../function/quiz/common/intervalTrainingAnswer';
 
 type Props = {
@@ -47,7 +45,6 @@ export const IntervalQuizContents: React.FC<Props> = (
 							{playSound === false ?  <PlayArrowIcon className="p-quiz-mv__play-icon"/> : <ReplayIcon className="p-quiz-mv__play-icon"/>}
 							<span>{playSound === false ? '再生' : 'リプレイ'}</span>
 						</button>
-
 				</div>
 				<div className="p-quiz-mv__option-box">
 					<div className="p-quiz-mv__sub-title">
@@ -61,18 +58,16 @@ export const IntervalQuizContents: React.FC<Props> = (
 						/>
 					</div>
 					<div>
-						<div className={nextQuiz ? "" : "invisible"}>
-							<button className={`${"p-quiz-mv__button-next"} ${nextText === 'スキップ' ? "skip-button": ""}`} onClick={() => handleNextDisplayButton()}>{nextText}</button>
+						<div className={nextQuiz ? "" : "l-main__invisible"}>
+							<button className={`${"p-quiz-mv__button-next"} ${nextText === 'スキップ' ? "p-quiz-mv__button-skip": ""}`} onClick={() => handleNextDisplayButton()}>{nextText}</button>
 						</div>
 						
-						<div className={resultQuiz ? "" : "invisible"}>
-							<button className={`${"p-quiz-mv__button-next"} ${answer === 'correct' ? "result-button" : "skip-button"}`} onClick={() => handleResultDisplayButton()}>結果</button>
+						<div className={resultQuiz ? "" : "l-main__invisible"}>
+							<button className={`${"p-quiz-mv__button-next"} ${answer === 'correct' ? "p-quiz-mv__button-result" : "p-quiz-mv__button-skip"}`} onClick={() => handleResultDisplayButton()}>結果</button>
 						</div>
 					</div>
 				</div>
-						
 				<button className="p-quiz-mv__button-top" onClick={() => navigate('/')}>Top</button>
-				
 			</div>
 		</section>
 	)

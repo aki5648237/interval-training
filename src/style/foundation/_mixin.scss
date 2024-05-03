@@ -1,8 +1,10 @@
+@import "./color";
+
 @mixin title-underline {
 	display: inline-block;
 	padding: 0.8rem 0;
 	margin-bottom: 0.2rem;
-	background-image: linear-gradient(90deg, rgba(207, 112, 23, 0.794) 0 10%, #dedede 25%);
+	background-image: linear-gradient(90deg, $c-main 0 10%, #dedede 25%);
 	background-repeat: no-repeat;
 	background-size: 100% 10%;
 	background-position: bottom;

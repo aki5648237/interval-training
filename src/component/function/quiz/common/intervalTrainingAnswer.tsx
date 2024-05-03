@@ -1,7 +1,4 @@
-
-import { Button, Box} from '@mui/material/';
 import { Question } from './getQuizContents';
-import "../../../../style/styles.css";
 
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import CloseIcon from '@mui/icons-material/Close';
@@ -19,9 +16,10 @@ export const Answer = ({questions, handleAnswerButtonClick, answer}: Props) => {
 				questions.map((item) => {
 					return (
 						<button
-							className={`${"p-quiz-mv__button-option"} ${item.result === 'correct' ? "correct" : ""} 
-							${item.result === 'inCorrect' ? "inCorrect" : ""} 
-							${answer === 'correct' && item.result === '' ? "unSelected": ""}`}
+							className={`${"p-quiz-mv__button-option"} 
+							${item.result === 'correct' ? "p-quiz-mv__button-correct" : ""} 
+							${item.result === 'inCorrect' ? "p-quiz-mv__button-inCorrect" : ""} 
+							${answer === 'correct' && item.result === '' ? "p-quiz-mv__button-unSelected": ""}`}
 							onClick={() => handleAnswerButtonClick(item.value)}
 							disabled={answer === 'correct'}
 							>{item.answerText}

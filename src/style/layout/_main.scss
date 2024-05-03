@@ -1,6 +1,8 @@
 .l-main {
 	margin: 0 20px;
-
+	&__invisible {
+		display: none;
+	}
 	&__inner {
 		text-align: center;
 	}

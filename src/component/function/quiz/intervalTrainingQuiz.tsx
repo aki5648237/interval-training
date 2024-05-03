@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom"
-import { Box,} from '@mui/material/';
 import {FC, useState, useEffect} from 'react';
 import { Question } from "./common/getQuizContents";
 
@@ -30,7 +28,7 @@ const IntervalTrainingQuiz: FC = () => {
 	// 問題No
 	const [currentQuestion, setCurrentQuestion] =useState<number>(1);
 	// 聞いた回数
-	const [listenCount, setListenCount] = useState<number>(0);
+	// const [listenCount, setListenCount] = useState<number>(0);
 	// 問題を非表示にするフラグ
 	const [openQuiz, setOpenQuiz] = useState<boolean>(false);
 	// 結果を非表示にするフラグ
@@ -92,7 +90,7 @@ const IntervalTrainingQuiz: FC = () => {
 			<div className="l-main">
 				<div className="l-main__inner">
 					{/* クイズ内容 */}
-					<div className={openQuiz ? "invisible" : ""}>
+					<div className={openQuiz ? "l-main__invisible" : ""}>
 						<IntervalQuizContents 
 							currentQuestion={currentQuestion}
 							playSound={playSound}
@@ -108,7 +106,7 @@ const IntervalTrainingQuiz: FC = () => {
 						/>
 					</div>
 					{/* クイズ結果 */}
-					<div className={openResult ? "invisible" : ""}>
+					<div className={openResult ? "l-main__invisible" : ""}>
 						<IntervalQuizResultContents 
 							handleResetButton={handleResetButton}
 						/>

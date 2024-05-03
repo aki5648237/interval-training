@@ -1,0 +1,25 @@
+.p-result-mv {
+	&__title {
+		@include title-underline;
+		font-size: 26px;
+		margin-bottom: 20px;
+	}
+	&__result-box {
+		height: 200px; // 後で消す
+		border: 1px solid $c-main-light;
+		margin-bottom: 30px;
+	}
+	&__button-box {
+		& button {
+			width: 130px;
+			height: 50px;
+			font-size: 18px;
+		}
+	}
+	&__button-top {
+		margin-right: 10%;
+	}
+	&__button-left {
+		margin-left: 10%;
+	}
+}

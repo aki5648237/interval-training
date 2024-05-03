@@ -7,6 +7,10 @@
 		margin-bottom: 35px;
 	}
 	&__text {
+		& div {
+			letter-spacing: 0.04em;
+			font-size: 20px;
+		}
 		font-weight: 520;
 		margin-bottom: 35px;
 	}

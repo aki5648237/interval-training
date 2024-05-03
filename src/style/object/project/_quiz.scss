@@ -14,26 +14,37 @@
 		font-size: 25px;
 		font-weight: bold;
 		margin-bottom: 35px;
+		& span {
+			position: relative;
+			bottom: 2px;
+		}
+	}
+	&__play-icon {
+		position: relative;
+		top: 6px;
+		font-size: 35px !important;
 	}
 	&__option-box {
 		text-align: center;
 		color: #000000;
-		border: 1px solid rgba(1, 0, 0, 0.4);
+		border: 1px solid $c-main-light;
 	}
 	&__sub-title {
-		height: 32px;
+		height: 38px;
 		background-color: $c-main-light;
 		color: $c-base;
+		& h2 {
+			line-height: 38px;
+			letter-spacing: 0.04em;
+		}
 	}
 	&__quiz-option {
 		margin-bottom: 30px;
 		padding: 0 10px;
 	}
 	&__button-option-box {
-		// display: inline;
 		text-align: left;
 	}
-	
 	&__button-option {
 		position: relative;
 		width: 50%;
@@ -43,39 +54,58 @@
 		font-weight: bold;
 		text-transform: none;
 		&:disabled {
-			border: 1px solid rgba(0, 0, 0, 1);
-			color: #000000;
+			color: $c-primary;
 		}
+	}
+	&__button-correct {
+		background-color: $c-correct-light;
+	}
+	&__button-inCorrect {
+		background-color: $c-inCorrect-light;
 	}
 	&__button-next {
 		width: 110px;
 		height: 40px;
+		letter-spacing: 0.05em;
 		font-size: 18px;
 		text-transform: none;
 		margin-bottom: 20px;
+	}
+	&__button-skip {
+		width: 110px;
+		height: 40px;
+		font-size: 18px;
+		background-color: $c-grey;
+	}
+	&__button-unSelected {
+		background-color: $c-grey;
+	}
+	&__button-result {
+		width: 110px;
+		height: 40px;
+		font-size: 18px;
+		text-transform: none;
+		font-weight: bold;
+		color: $c-primary;
+		background-color: $c-secondary;
 	}
 	&__button-top {
 		width: 110px;
 		height: 40px;
 		font-size: 18px;
 		text-transform: none;
-		margin-top: 20px;
-	}
-	&__play-icon {
-		position: relative;
-		top: 7px;
-		font-size: 35px !important;
+		margin-top: 30px;
 	}
 	&__circle-icon {
 		position: absolute;
 		top: 11px;
 		left: 8px;
-		color: $c-circle-icon;
+		color: $c-correct;
 	}
 	&__cross-icon {
 		position: absolute;
 		top: 12px;
 		left: 8px;
-		color: $c-cross-icon;
+		color: $c-inCorrect;
 	}
 }

@@ -4,7 +4,6 @@ div {
 	font-family: YuGothic、游ゴシック体;
 	font-size: 18px;
 }
-
 h1 {
 	font-family: MS ゴシック;
 	font-size: 32px;
@@ -16,9 +15,17 @@ h2 {
 h3 {
 	font-size: 20px;
 }
-
 button {
 	background-color: $c-base;
-	border: 1px solid rgba(0,0,0,1);
+	border: 1.6px solid $c-main-dark;
 	border-radius: 8px;
+	transition: .3s;
+	// disable時枠線の色を固定
+	&:disabled {
+		border: 1.6px solid $c-main-dark;
+	}
+	// disable時は効かせない
+	&:not(:disabled):active {
+		opacity: 0.6;
+	}
 }

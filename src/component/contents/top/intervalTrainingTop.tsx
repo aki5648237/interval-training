@@ -13,7 +13,7 @@ export const IntervalTrainingTop = () => {
             <div className="p-top-mv-inner">
               <h2 className="p-top-mv__title" >インターバルクイズ</h2>
               <div className="p-top-mv__text">  
-                <div>このクイズは、二つの音を聞き<br />インターバルを当てるトレーニングです。</div>
+                <div>二つの音を聞きインターバルを<br />当てるトレーニングです。</div>
                 <br />
                 <div>問題数は10問です。</div>
               </div>
