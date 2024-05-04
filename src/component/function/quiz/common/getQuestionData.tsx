@@ -5,7 +5,7 @@ export type Question = {
 	missCount: number;
 }
 
-export const GetQuizContent = () => {
+export const GetQuestionData = () => {
 
 	const questionType : number = 3;
 	const questions : Question[] =[];

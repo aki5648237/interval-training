@@ -1,4 +1,4 @@
-import { Question } from "./getQuizContents";
+import { Question } from "./getQuestionData";
 
 export const SetQuestionData = (currentQuestion : number, questionList : Question[], setQuestionList : Function, setResultQuiz : Function, setNextQuiz : Function) => {
 	// クイズ結果リストの結果を破棄

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import React from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ReplayIcon from '@mui/icons-material/Replay';
-import { Question } from '../../function/quiz/common/getQuizContents';
+import { Question } from '../../function/quiz/common/getQuestionData';
 import Answer from '../../function/quiz/common/intervalTrainingAnswer';
 
 type Props = {

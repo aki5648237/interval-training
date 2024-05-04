@@ -1,5 +1,5 @@
 import {FC, useState, useEffect} from 'react';
-import { Question } from "./common/getQuizContents";
+import { Question } from "./common/getQuestionData";
 
 // 機能コンポーネント
 import { SetQuestionData } from "./common/setQuestionData";
@@ -9,7 +9,7 @@ import { HandlePlayButtonClick } from "./common/handleButtonClick";
 import { HandleResultDisplayButton } from "./common/handleButtonClick";
 import { HandleNextDisplayButtonClick as HandleNextDisplayButton } from "./common/handleButtonClick";
 import { HandleResetButton } from "./common/handleButtonClick";
-import { GetQuizContent } from "./common/getQuizContents";
+import { GetQuestionData } from "./common/getQuestionData";
 import { useAnswer } from "../../../hook/playBackHooks";
 
 // 表示コンポーネント
@@ -17,7 +17,7 @@ import { IntervalQuizContents } from "../../contents/quiz/intervalQuizContents";
 import { IntervalQuizResultContents } from "../../contents/quiz/intervalQuizResultContents";
 
 /** @jsxImportSource @emotion/react */
-import AppHeader from "../../contents/common/appHeader";
+import AppHeaderContents from "../../contents/common/appHeaderContents";
 
 // 際レンダリング防止のため、最初に定義
 let rand: number;
@@ -59,7 +59,7 @@ const IntervalTrainingQuiz: FC = () => {
 	},[currentQuestion]);
 
 	// クイズ内容の取得
-	const questions = GetQuizContent();
+	const questions = GetQuestionData();
 	const [questionList, setQuestionList] = useState<Question[]>(questions);
 
 	// 選択肢押下時の処理
@@ -86,7 +86,7 @@ const IntervalTrainingQuiz: FC = () => {
 
 	return (
 		<div className="l-wrapper">
-			<AppHeader />
+			<AppHeaderContents />
 			<div className="l-main">
 				<div className="l-main__inner">
 					{/* クイズ内容 */}

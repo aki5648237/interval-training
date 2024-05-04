@@ -1,8 +1,8 @@
-import IntervalTrainingTop from "../../contents/top/intervalTrainingTop";
+import IntervalTrainingTopContents from "../../contents/top/intervalTrainingTopContents";
 
 export const IntervalTraining = () => {
   return (
-    <IntervalTrainingTop />
+    <IntervalTrainingTopContents />
 )
 }
 export default IntervalTraining;

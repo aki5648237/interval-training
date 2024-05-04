@@ -1,4 +1,4 @@
-export const AppHeader = () => {
+export const AppHeaderContents = () => {
 	return (
 		<header className="l-header">
 			<div className="l-header__inner">
@@ -7,4 +7,4 @@ export const AppHeader = () => {
 		</header>
 	);
 }
-export default AppHeader;
+export default AppHeaderContents;

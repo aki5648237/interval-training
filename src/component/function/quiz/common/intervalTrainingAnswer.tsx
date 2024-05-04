@@ -1,4 +1,4 @@
-import { Question } from './getQuizContents';
+import { Question } from './getQuestionData';
 
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import CloseIcon from '@mui/icons-material/Close';

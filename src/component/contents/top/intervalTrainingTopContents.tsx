@@ -1,12 +1,12 @@
 import { useNavigate, } from "react-router-dom"
-import AppHeader from '../common/appHeader';
+import AppHeaderContents from '../common/appHeaderContents';
 
-export const IntervalTrainingTop = () => {
+export const IntervalTrainingTopContents = () => {
 	const navigate = useNavigate();
 
 	return (
 		<div className="l-wrapper">
-     <AppHeader />
+     <AppHeaderContents />
      <div className="l-main">
         <div className="l-main__inner">
           <section className="p-top-mv">
@@ -25,4 +25,4 @@ export const IntervalTrainingTop = () => {
     </div>
 	)
 }
-export default IntervalTrainingTop;
+export default IntervalTrainingTopContents;

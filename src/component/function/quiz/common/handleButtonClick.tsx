@@ -1,4 +1,4 @@
-import { Question } from "./getQuizContents";
+import { Question } from "./getQuestionData";
 
 // 選択肢押下時の処理
 export const HandleAnswerButtonClick = (questionList : Question[], value: number, rand : number, setAnswer : Function, setNextText: Function) : Question[] => {
