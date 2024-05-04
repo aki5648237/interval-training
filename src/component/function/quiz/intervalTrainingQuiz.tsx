@@ -5,7 +5,7 @@ import { Question } from "./common/getQuestionData";
 import { SetQuestionData } from "./common/setQuestionData";
 import SetQuestion from "./common/setQuestion";
 import HandleAnswerButton from "./common/handleButtonClick";
-import { HandlePlayButtonClick } from "./common/handleButtonClick";
+import { HandlePlayButtonClick as HandlePlayButton } from "./common/handleButtonClick";
 import { HandleResultDisplayButton } from "./common/handleButtonClick";
 import { HandleNextDisplayButtonClick as HandleNextDisplayButton } from "./common/handleButtonClick";
 import { HandleResetButton } from "./common/handleButtonClick";
@@ -69,7 +69,7 @@ const IntervalTrainingQuiz: FC = () => {
 	}
 	// ボタン押下時音を鳴らす
 	const handlePlayButton = () => {
-		HandlePlayButtonClick(my_audio, playSound, setPlaySound);
+		HandlePlayButton(my_audio, playSound, setPlaySound);
 	}
 	// 次の問題を表示
 	const handleNextDisplayButton = () => {
