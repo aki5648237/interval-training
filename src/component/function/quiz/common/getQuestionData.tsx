@@ -2,7 +2,6 @@ export type Question = {
   answerText: string;
 	value: number;
 	result: string;
-	missCount: number;
 }
 
 export const GetQuestionData = () => {
@@ -12,9 +11,9 @@ export const GetQuestionData = () => {
 
 	switch (questionType) {
 		case 3 :
-			questions.push({answerText: 'Major 3rd', value: 0, result: '', missCount: 0})
-			questions.push({answerText: 'Perfect 5th', value: 1, result: '', missCount: 0})
-			questions.push({answerText: 'Octave', value: 2, result: '', missCount: 0})
+			questions.push({answerText: 'Major 3rd', value: 0, result: ''})
+			questions.push({answerText: 'Perfect 5th', value: 1, result: ''})
+			questions.push({answerText: 'Octave', value: 2, result: ''})
 	}
 
 

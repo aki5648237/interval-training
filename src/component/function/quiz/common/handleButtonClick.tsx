@@ -8,20 +8,19 @@ export const HandleAnswerButtonClick = (questionList : Question[], value: number
 			if (rand === value) {
 				setAnswer('correct');
 				setNextText('次へ');
-				return {...list, result:'correct', missCount: list.missCount};
+				return {...list, result:'correct'};
 				// 不正解時
 			} else {
 				setAnswer('incorrect');
 				setMissCount(missCount + 1)
 				console.log('aaaa');
-				return {...list, result:'inCorrect', missCount: list.missCount + 1};
+				return {...list, result:'inCorrect'};
 			}
 		}
 		else {
 			return {...list}
 		}
 	})
-	
 	return nextList;
 }
 export default HandleAnswerButtonClick;
@@ -35,7 +34,6 @@ export const HandlePlayButtonClick = (my_audio: HTMLAudioElement, replayFlag : b
 			setReplayCount(replayCount + 1)
 		}
 	}
-		
 	if (replayFlag === false) {
 		setReplayFlag(true);
 	}
@@ -61,8 +59,6 @@ export const HandleResultDisplayButton = (setOpenQuiz : Function, setOpenResult:
 // stateの破棄
 export const HandleResetButton = (setCurrentQuestion : Function, setOpenQuiz : Function, setOpenResult : Function, setNextQuiz : Function, setResultQuiz : Function, setAnswer : Function) => {
 	setCurrentQuestion(1);
-	// setListenCount(0);
-	// setMissCount(0);
 	setOpenQuiz(false);
 	setOpenResult(true);
 	setNextQuiz(true);

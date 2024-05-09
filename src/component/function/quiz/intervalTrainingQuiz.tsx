@@ -128,6 +128,7 @@ const IntervalTrainingQuiz: FC = () => {
 					<div className={openResult ? "l-main__invisible" : ""}>
 						<IntervalQuizResult 
 							handleResetButton={handleResetButton}
+							questionResultList={questionResultList}
 						/>
 					</div>
 				</div>
