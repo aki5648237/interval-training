@@ -1,15 +1,19 @@
 import { Question } from "./getQuestionData";
 
 // 選択肢押下時の処理
-export const HandleAnswerButtonClick = (questionList : Question[], value: number, rand : number, setAnswer : Function, setNextText: Function) : Question[] => {
+export const HandleAnswerButtonClick = (questionList : Question[], value: number, rand : number, setAnswer : Function, setNextText: Function, missCount : number,  setMissCount : Function) : Question[] => {
 
 	const nextList = questionList.map((list) => {
 		if (value === list.value) {
-			if (rand === value && value === list.value) {
+			if (rand === value) {
 				setAnswer('correct');
 				setNextText('次へ');
 				return {...list, result:'correct', missCount: list.missCount};
+				// 不正解時
 			} else {
+				setAnswer('incorrect');
+				setMissCount(missCount + 1)
+				console.log('aaaa');
 				return {...list, result:'inCorrect', missCount: list.missCount + 1};
 			}
 		}
@@ -23,24 +27,29 @@ export const HandleAnswerButtonClick = (questionList : Question[], value: number
 export default HandleAnswerButtonClick;
 
 // ボタン押下時音を鳴らす
-export const HandlePlayButtonClick = (my_audio: HTMLAudioElement, playSound : boolean, setPlaySound : Function) => {
+export const HandlePlayButtonClick = (my_audio: HTMLAudioElement, replayFlag : boolean, setReplayFlag : Function, replayCount : number, setReplayCount : Function) => {
 	if (my_audio !== undefined) {
 		my_audio.currentTime = 0;
 		my_audio.play();
+		if (replayFlag === true) {
+			setReplayCount(replayCount + 1)
+		}
 	}
 		
-	if (playSound === false) {
-		setPlaySound(true);
+	if (replayFlag === false) {
+		setReplayFlag(true);
 	}
 }
 
 // 結果を表示
-export const HandleNextDisplayButtonClick = (currentQuestion: number, setCurrentQuestion : Function, setAnswer : Function, setNextText : Function, setPlaySound : Function) => {
+export const HandleNextDisplayButtonClick = (currentQuestion: number, setCurrentQuestion : Function, setAnswer : Function, setNextText : Function, setPlaySound : Function, setListenCount: Function, setMissCount: Function) => {
 	setCurrentQuestion(currentQuestion + 1);
 	// 選択肢のボタンのcssを破棄
 	setAnswer('');
 	setNextText('スキップ');
 	setPlaySound(false);
+	setListenCount(0);
+	setMissCount(0);
 }
 
 // 結果を表示
