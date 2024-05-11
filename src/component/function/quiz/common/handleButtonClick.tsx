@@ -51,17 +51,16 @@ export const HandleNextDisplayButtonClick = (currentQuestion: number, setCurrent
 }
 
 // 結果を表示
-export const HandleResultDisplayButton = (setOpenQuiz : Function, setOpenResult: Function) => {
-	setOpenQuiz(true);
-	setOpenResult(false);
+export const HandleResultDisplayButton = (setOpenQuiz : Function) => {
+	setOpenQuiz(false);
 }
 
 // stateの破棄
-export const HandleResetButton = (setCurrentQuestion : Function, setOpenQuiz : Function, setOpenResult : Function, setNextQuiz : Function, setResultQuiz : Function, setAnswer : Function) => {
-	setCurrentQuestion(1);
-	setOpenQuiz(false);
-	setOpenResult(true);
-	setNextQuiz(true);
-	setResultQuiz(false);
-	setAnswer('');
+export const HandleResetButton = (setCurrentQuestion : Function, setOpenQuiz : Function, setNextQuiz : Function, setResultQuiz : Function, setAnswer : Function) => {
+	// setCurrentQuestion(1);
+	// setOpenQuiz(true);
+	// setNextQuiz(true);
+	// setResultQuiz(false);
+	// setAnswer('');
+	window.location.reload()
 }

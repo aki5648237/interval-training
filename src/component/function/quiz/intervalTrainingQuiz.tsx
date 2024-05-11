@@ -13,6 +13,7 @@ import { GetQuestionData } from "./common/getQuestionData";
 import { useAnswer } from "../../../hook/playBackHooks";
 import { IntervalQuizResult } from '../result/intervalQuizResult';
 import { SetResultData } from '../result/common/setResultData';
+import { SimpleResultCalculate } from '../result/common/simpleResultCalculate';
 
 // 表示コンポーネント
 import { IntervalQuizContents } from "../../contents/quiz/intervalQuizContents";
@@ -26,6 +27,7 @@ let my_audio: HTMLAudioElement;
 
 export type QuestionResult = {
 	type : number
+	answer : string
 	missCount : number
 	replayCount : number
 }
@@ -36,10 +38,8 @@ const IntervalTrainingQuiz: FC = () => {
 
 	// 問題No
 	const [currentQuestion, setCurrentQuestion] =useState<number>(1);
-	// 問題を非表示にするフラグ
-	const [openQuiz, setOpenQuiz] = useState<boolean>(false);
-	// 結果を非表示にするフラグ
-	const [openResult, setOpenResult] = useState<boolean>(true);
+	// 問題/結果を表示/非表示にするフラグ
+	const [openQuiz, setOpenQuiz] = useState<boolean>(true);
 	// 次のクイズボタンを表示するフラグ
 	const [nextQuiz, setNextQuiz] = useState<boolean>(true);
 	// 結果を見るボタンを表示するフラグ
@@ -54,7 +54,8 @@ const IntervalTrainingQuiz: FC = () => {
 	const [replayCount, setReplayCount] = useState<number>(0);
 
 	// hooksの読み込み
-	const {answer, setAnswer} = useAnswer();
+	// const {answer, setAnswer} = useAnswer();
+	const [answer, setAnswer] = useState<'correct' | 'inCorrect' | ''>('');
 
 	const questionResult : QuestionResult[] = []
 	const [questionResultList, setQuestionResultList] = useState<QuestionResult[]>(questionResult);
@@ -67,11 +68,6 @@ const IntervalTrainingQuiz: FC = () => {
 		my_audio = SetQuestion(rand);
 		// クイズ結果リストの結果を破棄
 		SetQuestionData(currentQuestion, questionList, setQuestionList, setResultQuiz, setNextQuiz);
-
-		questionResultList.map((item, index) => {
-			console.log( 'クイズ' + index +'種類' + item.type +'ミスの数' + item.missCount + 'リプレイの数' + item.replayCount)
-		})
-
 	},[currentQuestion]);
 
 	// クイズ内容の取得
@@ -89,18 +85,19 @@ const IntervalTrainingQuiz: FC = () => {
 	}
 	// 次の問題を表示
 	const handleNextDisplayButton = () => {
-		SetResultData(questionResultList, setQuestionResultList, rand, missCount, replayCount);
+		SetResultData(questionResultList, setQuestionResultList, rand, answer,  missCount, replayCount);
 		HandleNextDisplayButton(currentQuestion, setCurrentQuestion, setAnswer,setNextText, setReplayFlag, setMissCount, setReplayCount);
+		setAnswer('');
 	}
 
 	// 結果を表示
 	const handleResultDisplayButton = () => {
-		SetResultData(questionResultList, setQuestionResultList, rand, missCount, replayCount);
-		HandleResultDisplayButton(setOpenQuiz, setOpenResult);
+		SetResultData(questionResultList, setQuestionResultList, rand, answer, missCount, replayCount);
+		HandleResultDisplayButton(setOpenQuiz);
 	}
 	// 結果の破棄
 	const handleResetButton = () => {
-		HandleResetButton(setCurrentQuestion, setOpenQuiz, setOpenResult, setNextQuiz, setResultQuiz, setAnswer);
+		HandleResetButton(setCurrentQuestion, setOpenQuiz, setNextQuiz, setResultQuiz, setAnswer);
 	}
 
 	return (
@@ -109,31 +106,31 @@ const IntervalTrainingQuiz: FC = () => {
 			<div className="l-main">
 				<div className="l-main__inner">
 					{/* クイズ内容 */}
-					<div className={openQuiz ? "l-main__invisible" : ""}>
+					{openQuiz && (
 						<IntervalQuizContents 
-							currentQuestion={currentQuestion}
-							playSound={replayFlag}
-							nextQuiz={nextQuiz}
-							nextText={nextText}
-							resultQuiz={resultQuiz}
-							answer={answer}
-							questionList={questionList}
-							handlePlayButton={handlePlayButton}
-							handleAnswerButton={handleAnswerButton}
-							handleNextDisplayButton={handleNextDisplayButton}
-							handleResultDisplayButton={handleResultDisplayButton}
-						/>
+						currentQuestion={currentQuestion}
+						playSound={replayFlag}
+						nextQuiz={nextQuiz}
+						nextText={nextText}
+						resultQuiz={resultQuiz}
+						answer={answer}
+						questionList={questionList}
+						handlePlayButton={handlePlayButton}
+						handleAnswerButton={handleAnswerButton}
+						handleNextDisplayButton={handleNextDisplayButton}
+						handleResultDisplayButton={handleResultDisplayButton}
+					/>
+					)}
 					</div>
 					{/* クイズ結果 */}
-					<div className={openResult ? "l-main__invisible" : ""}>
-						<IntervalQuizResult 
+						{!openQuiz && (
+							<IntervalQuizResult 
 							handleResetButton={handleResetButton}
 							questionResultList={questionResultList}
 						/>
-					</div>
+						)}
 				</div>
 			</div>
-		</div>
 	)
 }
 export default IntervalTrainingQuiz;
