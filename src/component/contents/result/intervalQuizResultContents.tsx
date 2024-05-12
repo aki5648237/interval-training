@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom"
 import React from 'react';
+import { SimpleCalculate } from "../../function/result/intervalQuizResult";
+import { DetailCalculate } from "../../function/result/intervalQuizResult";
 
 type Props = {
 	handleResetButton : () => void
+	simpleCalculate : SimpleCalculate
+	detailCalculate : DetailCalculate[]
 }
 
 export const IntervalQuizResultContents : React.FC<Props> = (
-	{handleResetButton} : Props
+	{handleResetButton, simpleCalculate, detailCalculate} : Props
 ) => {
 	const navigate = useNavigate();
 	return (

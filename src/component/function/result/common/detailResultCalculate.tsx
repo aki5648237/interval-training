@@ -22,7 +22,8 @@ export const DetailResultCalculate = (questionResultList : QuestionResult[]) => 
 			questionNumber : questionNumber = questionNumber + 1,
 			totalMissCount : totalMissCount + item.missCount,
 			missCount : item.missCount !== 0 ? missCount = missCount + 1 : missCount,
-			replayCount : replayCount + item.replayCount}
+			replayCount : replayCount + item.replayCount
+		}
 	})
 
 	// 正答率を計算

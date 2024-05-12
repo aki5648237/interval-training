@@ -29,13 +29,15 @@ export const IntervalQuizResult : React.FC<Props> = (
 ) => {
 
 	// 簡易計算結果取得
-	let simpleCalculate = SimpleResultCalculate(questionResultList);
+	const simpleCalculate = SimpleResultCalculate(questionResultList);
 	//  詳細計算結果取得
-	let detailCalculate = DetailResultCalculate(questionResultList);
+	const detailCalculate = DetailResultCalculate(questionResultList);
 
 	return (
 		<IntervalQuizResultContents 
 			handleResetButton={handleResetButton}
+			simpleCalculate={simpleCalculate}
+			detailCalculate={detailCalculate}
 		/>
 	)
 }
