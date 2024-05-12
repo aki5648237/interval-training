@@ -13,7 +13,6 @@ export const HandleAnswerButtonClick = (questionList : Question[], value: number
 			} else {
 				setAnswer('incorrect');
 				setMissCount(missCount + 1)
-				console.log('aaaa');
 				return {...list, result:'inCorrect'};
 			}
 		}

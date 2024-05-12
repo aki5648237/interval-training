@@ -23,15 +23,14 @@ export const SimpleResultCalculate = (questionResultList : QuestionResult[]) => 
 	// 1問のマックス得点
 	const questionMaxScore = MAX_SCORE / questionNumber
 	// 計算結果初期値
-	
 	let totalScore = 0
 	let totalMissCount = 0
 	let perfectQuizNumber = 0
 	let overListenCount = 0
 
-	questionResultList.map((item, index) => {
-		console.log( 'クイズ' + index +'種類' + item.type +'ミスの数' + item.missCount + 'リプレイの数' + item.replayCount + '正解or不正解' + item.answer)
-	})
+	// questionResultList.map((item, index) => {
+	// 	console.log( 'クイズ' + index +'種類' + item.type +'ミスの数' + item.missCount + 'リプレイの数' + item.replayCount + '正解or不正解' + item.answer)
+	// })
 
 	// 1問ごとに計算を行う
 	questionResultList.map((item) => {
@@ -90,7 +89,10 @@ export const SimpleResultCalculate = (questionResultList : QuestionResult[]) => 
 		overListenCount : overListenCount
 	}
 
-	console.log('得点' + totalScore + 'ミス数'+ totalMissCount + 'ノーミス数' + perfectQuizNumber + '2回以上聞いた数' + overListenCount)
+	// console.log('得点' + totalScore + 'ミス数'+ totalMissCount + 'ノーミス数' + perfectQuizNumber + '2回以上聞いた数' + overListenCount)
+
+	return simpleCalculate;
 }
+
 
 
