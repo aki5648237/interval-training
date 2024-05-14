@@ -3,6 +3,8 @@ import React from 'react';
 import { SimpleCalculate } from "../../function/result/intervalQuizResult";
 import { DetailCalculate } from "../../function/result/intervalQuizResult";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import Dialog from "@mui/material/Dialog";
+import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
 	handleResetButton : () => void
@@ -24,12 +26,21 @@ export const IntervalQuizResultContents : React.FC<Props> = (
 					<h2 className="p-result-mv__title">クイズの結果</h2>
 					<div className="p-result-mv__result-box">
 						<div>
-							<div className="p-result-mv__total-score">得点 {simpleCalculate.totalScore}/100</div>
-							<ul className="p-result-mv__list-text">
-								<li>間違えた回数 {simpleCalculate.totalMissCount}</li>
-								<li>一発での正答数 {simpleCalculate.perfectQuizNumber}/10</li>
-								<li>リプレイ数 {simpleCalculate.overListenCount}</li>
-							</ul>
+							<div className="p-result-mv__total-score">点数 {simpleCalculate.totalScore}/100</div>
+							<div className="p-result-mv__text-box">
+								<div>
+									<span>間違えた回数 </span>
+									<span className="p-result-mv__result-value">{simpleCalculate.totalMissCount}</span>
+								</div>
+								<div>
+									<span>一発での正答数 </span>
+									<span className="p-result-mv__result-value">{simpleCalculate.perfectQuizNumber}/10</span>
+								</div>
+								<div>
+									<span>リプレイ数 </span>
+									<span className="p-result-mv__result-value">{simpleCalculate.overListenCount}</span>
+								</div>
+							</div>
 							<div className="p-result-mv__detail-link">
 								<div>詳細な結果はこちら</div>
 								<button onClick={()=> {openDetailResult()}}>
@@ -44,16 +55,50 @@ export const IntervalQuizResultContents : React.FC<Props> = (
 					</div>
 				</div>
 			</section>
-			{showModal && (
-				<section className="p-result-detail">
-				<dialog>
-					<div>詳細なクイズ結果</div>
-					<div>詳細なクイズ結果</div>
-					<div>詳細なクイズ結果</div>
-					<div>詳細なクイズ結果</div>
-				</dialog>
+
+			<section className="p-result-detail">
+				<Dialog
+					fullScreen
+					open={showModal}
+					>
+					
+						<div className="p-result-detail-inner">
+							<div className="p-result-detail__title-box">
+								<button className="p-result-detail__cross-icon" onClick={() => {closeDetailResult()}}>
+									<CloseIcon sx={{fontSize : '32px'}}/>
+								</button>
+								<div className="p-result-detail__title">詳細なクイズ結果</div>
+								<div className="p-result-detail__result-box">
+								<table className="p-result-detail__result-table">
+									<thead>
+										<tr>
+											<th>種類</th>
+											<th>ミス数</th>
+											<th>リプレイ数</th>
+											<th>正答率</th>
+										</tr>
+									</thead>
+									<tbody>
+										{detailCalculate.map((item) => (
+										<tr>
+											{/* ここに詳細なクイズ結果の表示を追加 */}
+											<td>{item.questionType}</td>
+											<td>{item.missCount}</td>
+											<td>{item.replayCount}</td>
+											<td>{item.correctRate}%</td>
+										</tr>
+										))}
+
+									</tbody>
+								</table>
+
+								</div>
+							</div>
+							
+
+						</div>
+				</Dialog>
 			</section>
-			)}
 		</div>
 		
 	)

@@ -1,3 +1,5 @@
+@import "../../foundation/color";
+
 .p-result-mv {
 	&-inner {
 		text-align: center
@@ -13,14 +15,27 @@
 		margin-bottom: 30px;
 	}
 	&__total-score {
-		font-size: 25px;
+		font-size: 24px;
+		color: $c-accent;
+		font-weight: bold;
 		margin: 20px 0 25px 0;
 	}
-	&__list-text {
+	&__text-box {
+		width: 250px;
+		// text-align: left;
+		margin: auto;
 		margin-bottom: 25px;
-		& li {
-			font-size: 20px;
+		& div {
+			margin-bottom: 5px;
 		}
+		& span {
+			font-size: 20px;
+			letter-spacing: 0.04em;
+			margin-bottom: 5px;
+		}
+	}
+	&__result-value {
+		font-weight: bold;
 	}
 	&__detail-link {
 		display: inline-flex;
@@ -47,7 +62,40 @@
 	}
 }
 .p-result-detail {
-	& dialog {
-		// z-index: 1900;
+	&-inner {
+		position: relative;
+		// width: 320px;
+		// height: 400px;
+	}
+	&__title-box {
+		// display: flex;
+		text-align: center;
+		
+	}
+	&__cross-icon {
+		border: none;
+		position: absolute;
+		top: 2px;
+		left: 0px;
+	}
+	&__title {
+		@include title-underline;
+		margin-top: 20px;
+		font-size: 22px;
+	}
+	&__result-box {
+		border: 1px solid $c-main-light;
+		margin: 20px 10px 0 10px;
+	}
+	&__result-table {
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		border-collapse: separate;
+		border-spacing: 12px 12px;
+		& td {
+			font-weight: 600;
+			font-size: 17px;
+		}
 	}
 }
