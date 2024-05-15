@@ -22,4 +22,24 @@
 		background-color: $c-accent;
 		color: $c-base;
 	}
+	&__number-box {
+		display: inline-flex;
+	}
+	&__number-select {
+		border: 1px solid $c-main-light;
+		font-size: 18px;
+		margin-left: 10px;
+		width: 45px;
+		height: 24px;
+	}
+	&__type-box {
+		display: inline-flex;
+	}
+	&__type-select {
+		border: 1px solid $c-main-light;
+		font-size: 18px;
+		margin-left: 10px;
+		width: 80px;
+		height: 24px;
+	}
 }
