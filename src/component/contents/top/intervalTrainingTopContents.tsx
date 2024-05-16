@@ -28,7 +28,7 @@ export const IntervalTrainingTopContents : React.FC<Props> = ({quizNumber, quizT
                 <br />
                 <div className="p-top-mv__number-box">
                   <div>問題数の選択 : </div>
-                  <select className="p-top-mv__number-select" value={selectQuizNumber} onChange={(e) => {handleSelectNumberChange(e)}}>
+                  <select className="p-top-mv__number-select" value={selectQuizNumber} defaultValue={selectQuizNumber} onChange={(e) => {handleSelectNumberChange(e)}}>
                     {quizNumber.map((item) => (
                       <option key={item.option} value={item.quizNumber}>
                         {item.quizNumber}
@@ -38,7 +38,7 @@ export const IntervalTrainingTopContents : React.FC<Props> = ({quizNumber, quizT
                 </div>
                 <div className="p-top-mv__type-box">
                   <div>種類の選択 : </div>
-                  <select className="p-top-mv__type-select" value={selectQuizType} onChange={(e) => {handleSelectTypeChange(e)}}>
+                  <select className="p-top-mv__type-select" value={selectQuizType} defaultValue={selectQuizType} onChange={(e) => {handleSelectTypeChange(e)}}>
                     {quizType.map((item) => (
                       <option key={item.option} value={item.quizTypeValue}>
                         {item.quizType}
@@ -47,7 +47,7 @@ export const IntervalTrainingTopContents : React.FC<Props> = ({quizNumber, quizT
                   </select>
                 </div>
               </div>
-              <button className="p-top-mv__button-primary" onClick={() => navigate('/IntervalTrainingQuiz')}>クイズスタート</button>
+              <button className="p-top-mv__button-primary" onClick={() => navigate('/IntervalTrainingQuiz',{state: {selectQuizNumber, selectQuizType}})}>クイズスタート</button>
             </div>
           </section>
         </div>

@@ -1,8 +1,9 @@
 import { DetailCalculate } from "../intervalQuizResult"
 import { QuestionResult } from "../../quiz/intervalTrainingQuiz"
+import { QuizSetting } from "../../quiz/intervalTrainingQuiz"
 
 // 問題の種類ごとの数/問題ごとの間違えた数/リプレイ数/正答割合%をオブジェクトに格納
-export const DetailResultCalculate = (questionResultList : QuestionResult[]) => {
+export const DetailResultCalculate = (questionResultList : QuestionResult[], quizSetting : QuizSetting) => {
 
 	// 計算結果格納リスト
 	let detailCalculate : DetailCalculate[] = []

@@ -1,8 +1,9 @@
 import { QuestionResult } from "../../quiz/intervalTrainingQuiz"
 import { SimpleCalculate } from "../intervalQuizResult"
+import { QuizSetting } from "../../quiz/intervalTrainingQuiz"
 
 // 全体の得点計算/間違えた数/一発での正答数/聞いた回数をオブジェクトに格納
-export const SimpleResultCalculate = (questionResultList : QuestionResult[]) => {
+export const SimpleResultCalculate = (questionResultList : QuestionResult[], quizSetting : QuizSetting) => {
 
 	// 計算結果格納オブジェクト
 	let simpleCalculate : SimpleCalculate
@@ -18,8 +19,8 @@ export const SimpleResultCalculate = (questionResultList : QuestionResult[]) => 
 
 	// マックス得点
 	const MAX_SCORE = 100
-	// 問題数(後で関数の引数として渡ってくる)
-	const questionNumber = 10
+	// 問題数
+	const questionNumber = quizSetting.selectQuizNumber
 	// 1問のマックス得点
 	const questionMaxScore = MAX_SCORE / questionNumber
 	// 計算結果初期値

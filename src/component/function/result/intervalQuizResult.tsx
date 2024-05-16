@@ -2,12 +2,14 @@ import { IntervalQuizResultContents } from "../../contents/result/intervalQuizRe
 import { QuestionResult } from "../quiz/intervalTrainingQuiz"
 import { SimpleResultCalculate } from "./common/simpleResultCalculate"
 import { DetailResultCalculate } from "./common/detailResultCalculate"
+import { QuizSetting } from "../quiz/intervalTrainingQuiz"
 import { useState } from "react"
 
 
 type Props = {
 	handleResetButton : () => void
 	questionResultList : QuestionResult[]
+	quizSetting : QuizSetting
 }
 
 export type SimpleCalculate = {
@@ -27,14 +29,14 @@ export type SimpleCalculate = {
  }
 
 export const IntervalQuizResult : React.FC<Props> = (
-	{handleResetButton, questionResultList} : Props
+	{handleResetButton, questionResultList, quizSetting} : Props
 ) => {
 	const [showModal, setShowModal] = useState(false);
 
 	// 簡易計算結果取得
-	const simpleCalculate = SimpleResultCalculate(questionResultList);
+	const simpleCalculate = SimpleResultCalculate(questionResultList, quizSetting);
 	//  詳細計算結果取得
-	const detailCalculate = DetailResultCalculate(questionResultList);
+	const detailCalculate = DetailResultCalculate(questionResultList, quizSetting);
 
 	// 詳細結果ダイアログ表示
 	const openDetailResult = () => {
