@@ -4,9 +4,11 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ReplayIcon from '@mui/icons-material/Replay';
 import { Question } from '../../function/quiz/common/getQuestionData';
 import Answer from '../../function/quiz/common/intervalTrainingAnswer';
+import { QuizSetting } from "../../function/quiz/intervalTrainingQuiz";
 
 type Props = {
 	currentQuestion : number,
+	quizSetting : QuizSetting,
   playSound : boolean,
   nextQuiz : boolean,
   nextText : string,
@@ -22,6 +24,7 @@ type Props = {
 export const IntervalQuizContents: React.FC<Props> = (
 	{
 		currentQuestion,
+		quizSetting,
 		playSound,
 		nextQuiz,
 		nextText,
@@ -39,7 +42,7 @@ export const IntervalQuizContents: React.FC<Props> = (
 		<section className="p-quiz-mv">
 			<div className="p-quiz-mv-inner">
 				<div>
-						<h2 className="p-quiz-mv__title">{currentQuestion}問 このインターバルは？</h2>
+						<h2 className="p-quiz-mv__title">Q{currentQuestion}/{quizSetting.selectQuizNumber} このインターバルは？</h2>
 						<button className="p-quiz-mv__button-primary"
 							onClick={() => handlePlayButton()}>
 							{playSound === false ?  <PlayArrowIcon className="p-quiz-mv__play-icon"/> : <ReplayIcon className="p-quiz-mv__play-icon"/>}

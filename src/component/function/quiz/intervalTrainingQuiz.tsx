@@ -78,9 +78,7 @@ const IntervalTrainingQuiz: FC = () => {
 
 	// クイズ内容の取得
 	const questions = GetQuestionData(quizSetting);
-	questions.map((item) => {
-		console.log(item.answerText)
-	})
+	
 	const [questionList, setQuestionList] = useState<Question[]>(questions);
 
 	// 選択肢押下時の処理
@@ -118,6 +116,7 @@ const IntervalTrainingQuiz: FC = () => {
 					{openQuiz && (
 						<IntervalQuizContents 
 						currentQuestion={currentQuestion}
+						quizSetting={quizSetting}
 						playSound={replayFlag}
 						nextQuiz={nextQuiz}
 						nextText={nextText}

@@ -6,10 +6,10 @@
 		font-size: 26px;
 		margin-bottom: 35px;
 	}
-	&__text {
+	&__text-box {
 		& div {
 			letter-spacing: 0.04em;
-			font-size: 20px;
+			font-size: 22px;
 		}
 		font-weight: 520;
 		margin-bottom: 35px;
@@ -24,12 +24,14 @@
 	}
 	&__number-box {
 		display: inline-flex;
+		margin-top: 12px;
+		margin-bottom: 10px;
 	}
 	&__number-select {
 		border: 1px solid $c-main-light;
 		font-size: 18px;
 		margin-left: 10px;
-		width: 45px;
+		width: 59px;
 		height: 24px;
 	}
 	&__type-box {

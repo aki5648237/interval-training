@@ -10,13 +10,13 @@ const MAJOR_2ND = 'Major 2nd';
 const MAJOR_3RD = 'Major 3rd';
 const PERFECT_4TH = 'Perfect 4th';
 const PERFECT_5TH = 'Perfect 5th';
-const MAJOR_6 = 'Major 6';
-const MAJOR_7 = 'Major 7';
+const MAJOR_6TH = 'Major 6th';
+const MAJOR_7TH = 'Major 7th';
 const OCTAVE = 'Octave';
 
-const TYPE_0 = [MAJOR_3RD, PERFECT_5TH, OCTAVE];
-const TYPE_1 = [MAJOR_2ND, MAJOR_3RD, PERFECT_4TH, PERFECT_5TH, OCTAVE];
-const TYPE_2 = [MAJOR_2ND, MAJOR_3RD, PERFECT_4TH, PERFECT_5TH, MAJOR_6, MAJOR_7, OCTAVE];
+export const TYPE_0 = [MAJOR_3RD, PERFECT_5TH, OCTAVE];
+export const TYPE_1 = [MAJOR_2ND, MAJOR_3RD, PERFECT_4TH, PERFECT_5TH, OCTAVE];
+export const TYPE_2 = [MAJOR_2ND, MAJOR_3RD, PERFECT_4TH, PERFECT_5TH, MAJOR_6TH, MAJOR_7TH, OCTAVE];
 
 
 export const GetQuestionData = (quizSetting : QuizSetting) => {

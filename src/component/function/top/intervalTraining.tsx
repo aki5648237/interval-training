@@ -34,14 +34,9 @@ export const IntervalTraining = () => {
   }
 
   // 問題数
-  const [selectQuizNumber, setSelectQuizNumber] = useState<number>(5);
+  const [selectQuizNumber, setSelectQuizNumber] = useState<number>(10);
   // 種類
   const [selectQuizType, setSelectQuizType] = useState<string>('0');
-
-  useEffect(() => {
-    console.log('問題数' +  selectQuizNumber, selectQuizType)
-
-  }, [selectQuizNumber, selectQuizType])
 
   return (
     <IntervalTrainingTopContents 

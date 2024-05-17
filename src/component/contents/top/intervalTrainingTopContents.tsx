@@ -23,8 +23,8 @@ export const IntervalTrainingTopContents : React.FC<Props> = ({quizNumber, quizT
           <section className="p-top-mv">
             <div className="p-top-mv-inner">
               <h2 className="p-top-mv__title" >インターバルクイズ</h2>
-              <div className="p-top-mv__text">  
-                <div>二つの音を聞きインターバルを<br />当てるトレーニングです。</div>
+              <div className="p-top-mv__text-box">  
+                <div className="p-top-mv__text">二つの音を聞きインターバルを<br />当てるトレーニングです。</div>
                 <br />
                 <div className="p-top-mv__number-box">
                   <div>問題数の選択 : </div>

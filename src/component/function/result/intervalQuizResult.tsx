@@ -25,7 +25,7 @@ export type SimpleCalculate = {
 	totalMissCount : number
 	missCount : number
 	replayCount : number
-	correctRate : number
+	correctRate : string
  }
 
 export const IntervalQuizResult : React.FC<Props> = (
@@ -38,10 +38,22 @@ export const IntervalQuizResult : React.FC<Props> = (
 	//  詳細計算結果取得
 	const detailCalculate = DetailResultCalculate(questionResultList, quizSetting);
 
+	let quizType = '';
+	switch (quizSetting.selectQuizType) {
+		case '0':
+			quizType = '3'
+			break;
+		case '1':
+			quizType = '5'
+			break;
+		case '2':
+			quizType = '7'
+			break;
+	}
+
 	// 詳細結果ダイアログ表示
 	const openDetailResult = () => {
 		setShowModal(true);
-		console.log(showModal)
 	}
 	const closeDetailResult = () => {
 		setShowModal(false);
@@ -55,6 +67,8 @@ export const IntervalQuizResult : React.FC<Props> = (
 			openDetailResult={openDetailResult}
 			closeDetailResult={closeDetailResult}
 			showModal={showModal}
+			quizSetting={quizSetting}
+			quizType={quizType}
 		/>
 	)
 }
